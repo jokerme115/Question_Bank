@@ -99,6 +99,7 @@ public class TopicDao {
 		pstm.setString(5, topic.getOption_C());
 		pstm.setString(6, topic.getOption_D());
 		pstm.setString(7, topic.getCorrect_Option());
+		pstm.setInt(8,topic.getID());
 		//Ö´ÐÐsql
 		int count = pstm.executeUpdate(sql);
 		if(count>0) {

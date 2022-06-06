@@ -6,7 +6,7 @@ import Bank_Dao.UserDao;
 import Bank_model.User;
 import Bank_util.jdbc_util;
 
-public class TestDelectUser {
+public class TestDeleteUser {
 	public static void main(String[] args) throws Exception {
 			int Id = 8;
 			

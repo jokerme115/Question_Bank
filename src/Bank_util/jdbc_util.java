@@ -20,7 +20,7 @@ public class jdbc_util
 		
 //	private String url = "jdbc:mysql://127.0.0.1:3306/db_book?useSSL = false";
 //	private String username = "root";		//用户名密码记得改成自己的
-//	private String password = "56585658";
+//	private String password = "200030222";
 //	private String jdbcName = "com.mysql.cj.jdbc.Driver";//如果这儿报错记得把.cj去掉
 			
 	/**

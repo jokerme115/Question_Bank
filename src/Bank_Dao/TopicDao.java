@@ -132,14 +132,16 @@ public class TopicDao {
 			//获取数据
 			int id =rs.getInt("ID");
 			int Type = rs.getInt("Type");
+			String Topic = rs.getString("Topic");
 			String Option_A = rs.getString("Option_A");
 			String Option_B = rs.getString("Option_B");
 			String Option_C = rs.getString("Option_C");
 			String Option_D = rs.getString("Option_D");
 			String Correct_Option = rs.getString("Correct_Option");
 			
-			//封装Topic对象
-			alltopic = new Topic();
+			
+			//封装Topic对象 Jun.6修改
+			alltopic = new Topic(Type, id, Topic, Option_A, Option_B, Option_C, Option_D,Correct_Option);
 			
 			//装载集合
 			topics.add(alltopic);

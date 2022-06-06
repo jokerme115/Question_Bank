@@ -37,6 +37,9 @@ public class UserDao {
 			resultUser.setUserName(rs.getString("userName"));
 			resultUser.setUserPassword(rs.getString("userPassWord"));
 		}
+		
+		pstmt.close();
+		rs.close();
 		return resultUser;
 	}
 	
@@ -60,6 +63,8 @@ public class UserDao {
 		
 		int rs = pstmt.executeUpdate();
 		
+		pstmt.close();
+		
 		if (rs == 0) {
 			return false;
 		}else {
@@ -76,11 +81,12 @@ public class UserDao {
 	public boolean deleteUser(Connection conn, User user) throws Exception {
 		String sql = "DELETE FROM user WHERE Id = ?";
 		
-		PreparedStatement prstm = conn.prepareStatement(sql);
-		prstm.setInt(1, user.getId());
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, user.getId());
 		
-		int a = prstm.executeUpdate();
+		int a = pstmt.executeUpdate();
 		
+		pstmt.close();
 		
 		if (a > 0) {
 			return true;
@@ -108,10 +114,13 @@ public class UserDao {
 		
 		int rs = pstmt.executeUpdate();
 		
+		pstmt.close();
+		
 		if (rs == 0) {
 			return false;
 		}else {
 			return true;
 		}
+		
 	}
 }

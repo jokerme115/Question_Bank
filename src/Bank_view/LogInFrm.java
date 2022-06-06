@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 
 import Bank_model.User;
+import Bank_util.String_util;
 import Bank_util.jdbc_util;
 
 import javax.swing.JOptionPane;
@@ -24,6 +25,11 @@ import Bank_Dao.UserDao;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 
+/**
+ * 注册界面
+ * @author Li ChenYang
+ *
+ */
 public class LogInFrm {
 
 	private JFrame FrmLogOn;
@@ -37,7 +43,7 @@ public class LogInFrm {
 	Connection conn = null;
 	UserDao userdao = new UserDao();
 	User user = new User();
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -187,21 +193,38 @@ public class LogInFrm {
 				String userPassword = new String(this.passwordField.getPassword());
 				int status = 1;
 				String Telephone = this.textNumber.getText();
-
-				conn = util.getCon();
 				
-				user.setUserName(userName);
-				user.setTelephone(Telephone);
-				user.setStatus(status);
-				user.setUserPassword(userPassword);
 				FrmLogOn.setAlwaysOnTop(false);
-				boolean a = userdao.SignIn(conn, user);
-				if (a) {
-					JOptionPane.showMessageDialog(null, "注册成功");
-					FrmLogOn.dispose();
+				if (String_util.isEmpty(userName)) {
+					JOptionPane.showMessageDialog(null, "用户名不能为空");
+				}else if (String_util.isEmpty(userPassword))
+				{
+					JOptionPane.showMessageDialog(null, "密码不能为空");
+				}else if (userPassword.trim().length() < 6) 
+				{
+					JOptionPane.showMessageDialog(null, "密码不能少于6个字符");
+				}else if (String_util.isEmpty(Telephone))
+				{
+					JOptionPane.showMessageDialog(null, "电话号码不能为空");
 				}else {
-					JOptionPane.showMessageDialog(null, "注册失败");
+					conn = util.getCon();
+					
+					user.setUserName(userName);
+					user.setTelephone(Telephone);
+					user.setStatus(status);
+					user.setUserPassword(userPassword);
+					
+					
+					boolean a = userdao.SignIn(conn, user);
+					if (a) {
+						JOptionPane.showMessageDialog(null, "注册成功");
+						FrmLogOn.dispose();
+					}else {
+						JOptionPane.showMessageDialog(null, "注册失败");
+					}
 				}
+
+				
 		
 	}
 

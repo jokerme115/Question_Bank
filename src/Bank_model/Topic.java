@@ -7,14 +7,38 @@ package Bank_model;
  */
 
 public class Topic { 					
-	private int Type; 					
+	private int Type; 	
+	private int ID;
 	private String Topic; 				
 	private String Option_A; 				
 	private String Option_B; 				
 	private String Option_C; 				
 	private String Option_D; 				
-	private String Correct_Option; 		
-
+	private String Correct_Option;
+	
+	public Topic() {
+		super();
+	}
+	
+	public Topic(int type, int iD, String topic, String option_A, String option_B, String option_C, String option_D,
+			String correct_Option) {
+		super();
+		Type = type;
+		ID = iD;
+		Topic = topic;
+		Option_A = option_A;
+		Option_B = option_B;
+		Option_C = option_C;
+		Option_D = option_D;
+		Correct_Option = correct_Option;
+	}
+	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
 	public int getType() {
 		return Type;
 	}

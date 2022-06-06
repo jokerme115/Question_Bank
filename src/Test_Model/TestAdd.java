@@ -40,6 +40,7 @@ public class TestAdd {
 		
 		boolean a = topic_dao.storeTopic(conn, topic);
 		System.out.println(a);
+		System.out.println("111");
 	}
 	
 	

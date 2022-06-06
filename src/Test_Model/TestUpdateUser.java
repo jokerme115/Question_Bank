@@ -13,7 +13,7 @@ import Bank_util.jdbc_util;
  */
 public class TestUpdateUser {
 	public static void main(String[] args) throws Exception {
-		int Id = 7;
+		int Id = 8;
 		String userName = "Œ∫ÊÍ’È1";
 		String userPassword = "123456";
 		int status = 2;

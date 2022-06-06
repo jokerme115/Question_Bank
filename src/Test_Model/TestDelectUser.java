@@ -8,7 +8,7 @@ import Bank_util.jdbc_util;
 
 public class TestDelectUser {
 	public static void main(String[] args) throws Exception {
-			int Id = 5;
+			int Id = 8;
 			
 			jdbc_util util = new jdbc_util();
 			Connection conn = null;

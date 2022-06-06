@@ -25,6 +25,7 @@ import Bank_util.jdbc_util;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class LogOnFrm {
 
@@ -111,14 +112,25 @@ public class LogOnFrm {
 		btnNewButton_1.setToolTipText("");
 		btnNewButton_1.setIcon(new ImageIcon(LogOnFrm.class.getResource("/images/8666729_rotate_cw_icon.png")));
 		btnNewButton_1.setFont(new Font("свт╡", Font.PLAIN, 20));
+		
+		JButton btnNewButton_2 = new JButton("\u7ACB\u5373\u6CE8\u518C");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LogInFrm Loginfrm = new LogInFrm();
+				Loginfrm.main(null);
+			}
+		});
+		btnNewButton_2.setBackground(Color.WHITE);
+		btnNewButton_2.setForeground(Color.BLACK);
+		btnNewButton_2.setIcon(new ImageIcon(LogOnFrm.class.getResource("/images/9041755_jump_left_icon.png")));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(272, Short.MAX_VALUE)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 262, GroupLayout.PREFERRED_SIZE)
 					.addGap(261))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(167)
@@ -132,9 +144,14 @@ public class LogOnFrm {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(232)
 							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(95)
-							.addComponent(btnNewButton_1)))
+							.addGap(71)
+							.addComponent(btnNewButton_1)
+							.addGap(24)))
 					.addGap(218))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(603, Short.MAX_VALUE)
+					.addComponent(btnNewButton_2)
+					.addGap(83))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -149,10 +166,12 @@ public class LogOnFrm {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 						.addComponent(LoginPassWord, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-					.addGap(72)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnNewButton_2)
+					.addGap(43)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE))
 					.addGap(72))
 		);
 		frame.getContentPane().setLayout(groupLayout);

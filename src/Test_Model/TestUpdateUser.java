@@ -19,8 +19,8 @@ public class TestUpdateUser {
 		int status = 2;
 		String Telephone = "110";
 		
-		jdbc_util util = new jdbc_util();
-		Connection conn = null;
+		jdbc_util util = new jdbc_util();//工具类，创建连接
+		Connection conn = null;			//
 		UserDao userdao = new UserDao();
 		User user = new User();
 		

@@ -7,7 +7,8 @@ package Bank_model;
  */
 
 public class Topic { 					
-	private int Type; 					
+	private int Type; 	
+	private int ID;
 	private String Topic; 				
 	private String Option_A; 				
 	private String Option_B; 				
@@ -15,6 +16,12 @@ public class Topic {
 	private String Option_D; 				
 	private String Correct_Option; 		
 
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
 	public int getType() {
 		return Type;
 	}

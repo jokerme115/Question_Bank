@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import Bank_model.Topic;
 
 /**
@@ -114,7 +116,7 @@ public class TopicDao {
 	 * @param topic
 	 * @throws Exception
 	 */
-	public ArrayList<Topic> selectAllTopic (Connection conn) throws Exception {
+	public static ArrayList<Topic> selectAllTopic (Connection conn) throws Exception {
 		//设置sql语句
 		String sql = "select * from topic;";
 		
@@ -149,6 +151,19 @@ public class TopicDao {
 		//释放资源
 		rs.close();
 		return topics;
-
+	}
+	
+	public static ArrayList<Topic> getRamdomTopic(ArrayList<Integer> ramdom, Connection conn, Topic topic) throws Exception{
+		ArrayList<Topic> ramdomTopic= new ArrayList<>();//创建一个集合包含了随机题目的全部信息
+		
+		ArrayList<Topic> allTopic = selectAllTopic(conn);//提取所有题目信息到集合allTopic中
+		
+		Iterator<Integer> ITramdom = ramdom.iterator();//利用迭代器遍历所有随机数集合
+		
+		while (ITramdom.hasNext()) {
+			ramdomTopic.add(allTopic.get(ITramdom.hashCode())) ;//把allTopic中随机数所对应的Topic放入集合ramdomTopic中
+		}
+		return ramdomTopic;
+		
 	}
 }

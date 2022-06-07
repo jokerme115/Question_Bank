@@ -18,7 +18,7 @@ public class TestShowTopic {
 		jdbc_util util = new jdbc_util();
 		Connection conn = null;
 		TopicDao userdao = new TopicDao();
-		ArrayList<String> list = null;
+		ArrayList<Topic> list = null;
 		
 		
 		conn = util.getCon();

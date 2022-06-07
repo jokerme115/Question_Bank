@@ -6,12 +6,7 @@ import Bank_Dao.UserDao;
 import Bank_model.User;
 import Bank_util.jdbc_util;
 
-/**
- * 删除用户数据 
- * @author HeTao
- *
- */
-public class TestDelectUser {
+public class TestDeleteUser {
 	public static void main(String[] args) throws Exception {
 			int Id = 8;
 			

@@ -115,7 +115,7 @@ public class TopicDao {
 	 * @param topic
 	 * @throws Exception
 	 */
-	public void selectAllTopic (Connection conn, Topic topic) throws Exception {
+	public ArrayList selectAllTopic (Connection conn) throws Exception {
 		//设置sql语句
 		String sql = "select * from topic;";
 		
@@ -126,7 +126,7 @@ public class TopicDao {
 		ResultSet rs =pstm.executeQuery();
 		
 		Topic alltopic = null;
-		List<Topic> topics=new ArrayList<>();
+		ArrayList<Topic> topics=new ArrayList<>();
 		
 		while(rs.next()) {
 			//获取数据
@@ -145,10 +145,11 @@ public class TopicDao {
 			
 			//装载集合
 			topics.add(alltopic);
+			
 		}
 		//释放资源
 		rs.close();
-		System.out.println(topics);
+		return topics;
 
 	}
 }

@@ -16,6 +16,7 @@ public class Topic {
 	private String Option_D; 				
 	private String Correct_Option;
 	
+
 	public Topic() {
 		super();
 	}
@@ -82,4 +83,10 @@ public class Topic {
 		Correct_Option = correct_Option;
 	}
 
+	@Override
+	public String toString() {
+		return "Topic [Type=" + Type + ", ID=" + ID + ", Topic=" + Topic + ", Option_A=" + Option_A + ", Option_B="
+				+ Option_B + ", Option_C=" + Option_C + ", Option_D=" + Option_D + ", Correct_Option=" + Correct_Option
+				+ "]";
+	}
 }

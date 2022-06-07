@@ -116,8 +116,7 @@ public class LogOnFrm {
 		JButton btnNewButton_2 = new JButton("\u7ACB\u5373\u6CE8\u518C");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LogInFrm Loginfrm = new LogInFrm();
-				Loginfrm.main(null);
+				LogInFrm.main(null);
 			}
 		});
 		btnNewButton_2.setBackground(Color.WHITE);

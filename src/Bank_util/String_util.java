@@ -2,7 +2,7 @@ package Bank_util;
 
 /**
  * ×Ö·û´®¹¤¾ß°ü
- * @author 15351
+ * @author HeTao
  *
  */
 public class String_util {

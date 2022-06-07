@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
-
 import Bank_model.Topic;
 
 /**
@@ -115,7 +113,7 @@ public class TopicDao {
 	 * @param topic
 	 * @throws Exception
 	 */
-	public ArrayList selectAllTopic (Connection conn) throws Exception {
+	public ArrayList<Topic> selectAllTopic (Connection conn) throws Exception {
 		//…Ë÷√sql”Ôæ‰
 		String sql = "select * from topic;";
 		

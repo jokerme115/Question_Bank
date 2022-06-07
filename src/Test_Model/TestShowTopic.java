@@ -17,13 +17,12 @@ public class TestShowTopic {
 	public static void main(String[] args) throws Exception {
 		jdbc_util util = new jdbc_util();
 		Connection conn = null;
-		TopicDao userdao = new TopicDao();
 		ArrayList<Topic> list = null;
 		
 		
 		conn = util.getCon();
 		
-		list = userdao.selectAllTopic(conn);
+		list = TopicDao.selectAllTopic(conn);
 		
 		Iterator<Topic> it =  list.iterator();
 		while (it.hasNext()) {

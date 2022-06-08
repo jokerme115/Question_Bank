@@ -2,7 +2,7 @@ package Bank_model;
 
 /**
  * 用户实体
- * @author 15351
+ * @author HeTao
  *
  */
 public class User {

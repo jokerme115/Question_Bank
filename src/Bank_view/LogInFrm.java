@@ -87,7 +87,7 @@ public class LogInFrm {
 		Return.setFont(new Font("宋体", Font.PLAIN, 21));
 		Return.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int Order = JOptionPane.showConfirmDialog(Return, "是否关闭窗口");
+				int Order = JOptionPane.showConfirmDialog(null, "是否关闭窗口");
 				if(Order == 0) {
 					ReturnToLogin(e);
 				}

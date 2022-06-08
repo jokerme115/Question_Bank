@@ -3,7 +3,15 @@ package Bank_util;
 import java.util.ArrayList;
 import Bank_model.Topic;
 
+import Bank_model.Topic;
+
 public class topic_util {
+	/**
+	 * é¢˜ç›®éšæœºæŠ½å–åˆ°ArrayListä¸­
+	 * @param digité¢˜ç›®ç±»å‹
+	 * @param totaléšæœºæ•°ä¸ªæ•°
+	 * @return
+	 */
 	public static ArrayList<Integer> topicRandom(int digit, int total) {
 		ArrayList<Integer> list = new ArrayList<>();
 
@@ -14,25 +22,31 @@ public class topic_util {
 		
 	}
 	
-	public static int totalInformation() {
-		int ret = 0;
+	/**
+	 * è¿”å›é¢˜ç›®æ€»æ•°ï¼Œä¸åŒé¢˜å‹çš„ä¸ªæ•°å•é€‰ï¼Œå¤šé€‰ï¼ˆæš‚å®šï¼‰ç”¨é›†åˆ é˜²æ­¢ä»¥åæ›´æ”¹ç±»å‹ä¸ªæ•°æ•°ç»„å¤§å°å¾—å˜
+	 * @param Topicæ‰€æœ‰é¢˜å‹é›†åˆ
+	 * @return
+	 */
+	public static ArrayList<Integer> totalInformation(Topic topic) {
+		ArrayList<Integer> ret = new ArrayList<>();//1:å•é€‰ 2:å¤šé€‰
 		
 		
 		return ret;
 	}
 	/**
+
 	 * 
-	 * ÅĞ¶ÏÎÒµÄÑ¡ÏîÊÇ·ñÕıÈ·(°üÀ¨¶àÑ¡)¶àÑ¡´ğ°¸ÊÇstingÀàĞÍÈçAB¿ÉÄÜÓĞ¿Õ¸ñ
-	 * @param Optionµ¥Ñ¡Ñ¡Ïî A=1 B=2 C=3 D=4 
-	 * ¶àÑ¡Ñ¡Ïî  A=1000 B=0100 C=0010 D=0001
-	 * @param topicÕâµÀÌâµÄĞÅÏ¢
+	 * åˆ¤æ–­æˆ‘çš„é€‰é¡¹æ˜¯å¦æ­£ç¡®(åŒ…æ‹¬å¤šé€‰)å¤šé€‰ç­”æ¡ˆæ˜¯stingç±»å‹å¦‚ABå¯èƒ½æœ‰ç©ºæ ¼
+	 * @param Optionå•é€‰é€‰é¡¹ A=1 B=2 C=3 D=4 
+	 * å¤šé€‰é€‰é¡¹  A=1000 B=0100 C=0010 D=0001
+	 * @param topicè¿™é“é¢˜çš„ä¿¡æ¯
 	 * @return
 	 */
 	public static int jugementOption(int Option, Topic topic) {
-		int flag=0;//0Îª´íÎó£¬1ÎªÖÁÉÙ×ö¶ÔÒ»¸öÇÒÃ»ÓĞ´íÎó£¬2ÎªÈ«¶Ô£»
-		String str=topic.getCorrect_Option();//Î´´¦Àí±ê×¼´ğ°¸
-		int currentOption= 0;//ÕûĞÍ±ê×¼´ğ°¸
-		//±éÀú×ª»¯ÕıÈ·´ğ°¸
+		int flag=0;//0ä¸ºé”™è¯¯ï¼Œ1ä¸ºè‡³å°‘åšå¯¹ä¸€ä¸ªä¸”æ²¡æœ‰é”™è¯¯ï¼Œ2ä¸ºå…¨å¯¹ï¼›
+		String str=topic.getCorrect_Option();//æœªå¤„ç†æ ‡å‡†ç­”æ¡ˆ
+		int currentOption= 0;//æ•´å‹æ ‡å‡†ç­”æ¡ˆ
+		//éå†è½¬åŒ–æ­£ç¡®ç­”æ¡ˆ
 		for(int index=0;index < str.length();index++) {
 			if(str.charAt(index)=='A') {
 				currentOption+=1000;
@@ -44,8 +58,8 @@ public class topic_util {
 				currentOption+=1;
 			}
 		
-		//ÅĞ¶Ï´ğ°¸
-		//µ¥Ñ¡Çé¿ö
+		//åˆ¤æ–­ç­”æ¡ˆ
+		//å•é€‰æƒ…å†µ
 		if(topic.getType()==1) {
 			if(Option==1000) {
 				flag=2;
@@ -57,9 +71,9 @@ public class topic_util {
 				flag=2;
 			}
 		}
-//		¶àÑ¡Çé¿ö
+//		å¤šé€‰æƒ…å†µ
 		else if(topic.getType()==2){
-			//»ñµÃÑ¡Ïî¸öÊı
+			//è·å¾—é€‰é¡¹ä¸ªæ•°
 			@SuppressWarnings("unused")
 			int Option_num=0;
 			while(Option>0) {
@@ -72,12 +86,12 @@ public class topic_util {
 				currentOption_num+=currentOption%10;
 				currentOption/=10;
 			}
-			//ÏÈ±È½ÏÑ¡Ïî¸öÊı
-			//Èç¹ûÑ¡Ïî¸öÊı´óÓÚÕıÈ·´ğ°¸Ñ¡Ïî¸öÊı È«´í
+			//å…ˆæ¯”è¾ƒé€‰é¡¹ä¸ªæ•°
+			//å¦‚æœé€‰é¡¹ä¸ªæ•°å¤§äºæ­£ç¡®ç­”æ¡ˆé€‰é¡¹ä¸ªæ•° å…¨é”™
 			if(Option_num>currentOption_num) {
 				flag=0;
 			}
-			//Èç¹ûÑ¡Ïî¸öÊıµÈÓÚÕıÈ·´ğ°¸¸öÊı Èç¹û==ÄÇÃ´¶Ô ·ñÔòÈ«´í			
+			//å¦‚æœé€‰é¡¹ä¸ªæ•°ç­‰äºæ­£ç¡®ç­”æ¡ˆä¸ªæ•° å¦‚æœ==é‚£ä¹ˆå¯¹ å¦åˆ™å…¨é”™			
 			else if(Option_num==currentOption_num){
 				if(Option==currentOption) {
 					flag=2;
@@ -86,9 +100,9 @@ public class topic_util {
 				}
 			
 			}
-			//Èç¹ûÑ¡Ïî¸öÊıĞ¡ÓÚÕıÈ·´ğ°¸¸öÊı
+			//å¦‚æœé€‰é¡¹ä¸ªæ•°å°äºæ­£ç¡®ç­”æ¡ˆä¸ªæ•°
 			else {
-				//ÕâÖÖÇé¿ö×î¶à¶ÔÒ»¸ö
+				//è¿™ç§æƒ…å†µæœ€å¤šå¯¹ä¸€ä¸ª
 				flag=1;
 				for(int i=0;i<4;i++) {
 					if(Option%10>currentOption%10) {
@@ -103,5 +117,3 @@ public class topic_util {
 		}
 		return flag;
 	}
-
-}

@@ -1,4 +1,4 @@
-package Test_Model;
+package Test_Model_Topic;
 
 import java.sql.Connection;
 import java.util.ArrayList;

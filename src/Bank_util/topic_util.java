@@ -22,17 +22,17 @@ public class topic_util {
 	}
 	/**
 	 * 
-	 * ┼╨╢╧╬╥╡─╤б╧ю╩╟╖ё╒¤╚╖(░№└и╢р╤б)╢р╤б┤Ё░╕╩╟sting└р╨═╚чAB┐╔─▄╙╨┐╒╕ё
-	 * @param Option╡е╤б╤б╧ю A=1 B=2 C=3 D=4 
-	 * ╢р╤б╤б╧ю  A=1000 B=0100 C=0010 D=0001
-	 * @param topic╒т╡└╠т╡─╨┼╧в
+	 * я┐╜╨╢я┐╜я┐╜╥╡я┐╜╤бя┐╜я┐╜я┐╜╟╖я┐╜я┐╜я┐╜╚╖(я┐╜я┐╜я┐╜я┐╜я┐╜╤б)я┐╜я┐╜╤бя┐╜я┐╜я┐╜я┐╜stingя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ABя┐╜я┐╜я┐╜я┐╜я┐╜╨┐╒╕я┐╜
+	 * @param Optionя┐╜я┐╜╤б╤бя┐╜я┐╜ A=1 B=2 C=3 D=4 
+	 * я┐╜я┐╜╤б╤бя┐╜я┐╜  A=1000 B=0100 C=0010 D=0001
+	 * @param topicя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╧в
 	 * @return
 	 */
 	public static int jugementOption(int Option, Topic topic) {
-		int flag=0;//0╬к┤э╬єгм1╬к╓┴╔┘╫Ў╢╘╥╗╕Ў╟╥├╗╙╨┤э╬єгм2╬к╚л╢╘г╗
-		String str=topic.getCorrect_Option();//╬┤┤ж└э▒ъ╫╝┤Ё░╕
-		int currentOption= 0;//╒√╨═▒ъ╫╝┤Ё░╕
-		//▒щ└·╫к╗п╒¤╚╖┤Ё░╕
+		int flag=0;//0╬кя┐╜я┐╜я┐╜я┐╜1╬кя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╥╗я┐╜я┐╜я┐╜я┐╜├╗я┐╜╨┤я┐╜я┐╜я┐╜2╬к╚ля┐╜╘гя┐╜
+		String str=topic.getCorrect_Option();//╬┤я┐╜я┐╜я┐╜я┐╜я┐╜╫╝я┐╜я┐╜
+		int currentOption= 0;//я┐╜я┐╜я┐╜═▒я┐╜╫╝я┐╜я┐╜
+		//я┐╜я┐╜я┐╜я┐╜╫кя┐╜я┐╜я┐╜я┐╜╚╖я┐╜я┐╜
 		for(int index=0;index < str.length();index++) {
 			if(str.charAt(index)=='A') {
 				currentOption+=1000;
@@ -44,8 +44,8 @@ public class topic_util {
 				currentOption+=1;
 			}
 		}
-		//┼╨╢╧┤Ё░╕
-		//╡е╤б╟щ┐Ў
+		//я┐╜╨╢╧┤я┐╜
+		//я┐╜я┐╜╤бя┐╜я┐╜я┐╜
 		if(topic.getType()==1) {
 			if(Option==1000) {
 				flag=2;
@@ -57,9 +57,9 @@ public class topic_util {
 				flag=2;
 			}
 		}
-//		╢р╤б╟щ┐Ў
+//		я┐╜я┐╜╤бя┐╜я┐╜я┐╜
 		else if(topic.getType()==2){
-			//╗ё╡├╤б╧ю╕Ў╩¤
+			//я┐╜я┐╜я┐╜╤бя┐╜я┐╜я┐╜я┐╜я┐╜
 			@SuppressWarnings("unused")
 			int Option_num=0;
 			int temp=Option;
@@ -76,12 +76,12 @@ public class topic_util {
 				currentOption/=10;
 			}
 			currentOption=temp1;
-			//╧╚▒╚╜╧╤б╧ю╕Ў╩¤
-			//╚ч╣√╤б╧ю╕Ў╩¤┤є╙┌╒¤╚╖┤Ё░╕╤б╧ю╕Ў╩¤ ╚л┤э
+			//я┐╜╚▒╚╜я┐╜╤бя┐╜я┐╜я┐╜я┐╜я┐╜
+			//я┐╜я┐╜я┐╜╤бя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╚╖я┐╜я┐╜╤бя┐╜я┐╜я┐╜я┐╜я┐╜ ╚ля┐╜я┐╜
 			if(Option_num>currentOption_num) {
 				flag=0;
 			}
-			//╚ч╣√╤б╧ю╕Ў╩¤╡╚╙┌╒¤╚╖┤Ё░╕╕Ў╩¤ ╚ч╣√==─╟├┤╢╘ ╖ё╘Є╚л┤э			
+			//я┐╜я┐╜я┐╜╤бя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╚╖я┐╜Ё░╕╕я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜==я┐╜я┐╜├┤я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜╚ля┐╜я┐╜			
 			else if(Option_num==currentOption_num){
 				if(Option==currentOption) {
 					flag=2;
@@ -89,9 +89,9 @@ public class topic_util {
 					flag=0;
 				}			
 			}
-			//╚ч╣√╤б╧ю╕Ў╩¤╨б╙┌╒¤╚╖┤Ё░╕╕Ў╩¤
+			//я┐╜я┐╜я┐╜╤бя┐╜я┐╜я┐╜я┐╜я┐╜╨бя┐╜я┐╜я┐╜я┐╜╚╖я┐╜Ё░╕╕я┐╜я┐╜я┐╜
 			else {
-				//╒т╓╓╟щ┐Ў╫ю╢р╢╘╥╗╕Ў
+				//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╥╗я┐╜я┐╜
 				flag=1;
 				for(int i=0;i<4;i++) {
 					if(Option%10>currentOption%10) {
@@ -105,7 +105,8 @@ public class topic_util {
 			}				
 		return flag;
 	}
-	/**▓т╩╘╙├└¤
+
+	/**я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	 * 
 	 * @param args
 	 */

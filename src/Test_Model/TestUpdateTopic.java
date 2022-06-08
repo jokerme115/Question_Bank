@@ -20,9 +20,9 @@ public class TestUpdateTopic {
 		String Option_C="dismiss";
 		String Option_D="this";
 		String Correct_Option="C";
-		int ID=5;
+		int ID=13;
 		jdbc_util util = new jdbc_util();
-		Connection conn = null;
+		Connection conn = util.getCon();
 		TopicDao topicdao = new TopicDao();
 		Topic topic = new Topic();
 		
@@ -35,7 +35,8 @@ public class TestUpdateTopic {
 		topic.setOption_D(Option_D);
 		topic.setCorrect_Option(Correct_Option);
 		//38––”–“…Œ 
-		topicdao.updateTopic(conn, topic);
+		boolean a = topicdao.updateTopic(conn, topic);
+		System.out.println(a);
 		
 	}
 }

@@ -1,19 +1,12 @@
 package Bank_util;
 
 import java.util.ArrayList;
-
 import Bank_model.Topic;
 
 public class topic_util {
-	/**
-	 * ÌâÄ¿Ëæ»ú³éÈ¡µ½ArrayListÖĞ
-	 * @param digitÌâÄ¿ÀàĞÍ
-	 * @param totalËæ»úÊı¸öÊı
-	 * @return
-	 */
 	public static ArrayList<Integer> topicRandom(int digit, int total) {
 		ArrayList<Integer> list = new ArrayList<>();
-		
+
 		for (int i = 0; i < digit; i++) {
 			Math.random();
 		}
@@ -21,26 +14,109 @@ public class topic_util {
 		
 	}
 	
-	/**
-	 * ·µ»ØÌâÄ¿×ÜÊı£¬²»Í¬ÌâĞÍµÄ¸öÊıµ¥Ñ¡£¬¶àÑ¡£¨Ôİ¶¨£©ÓÃ¼¯ºÏ ·ÀÖ¹ÒÔºó¸ü¸ÄÀàĞÍ¸öÊıÊı×é´óĞ¡µÃ±ä
-	 * @param TopicËùÓĞÌâĞÍ¼¯ºÏ
-	 * @return
-	 */
-	public static ArrayList<Integer> totalInformation(Topic topic) {
-		ArrayList<Integer> ret = new ArrayList<>();//1:µ¥Ñ¡ 2:¶àÑ¡
+	public static int totalInformation() {
+		int ret = 0;
 		
 		
 		return ret;
 	}
 	/**
-	 * ÅĞ¶ÏÎÒµÄÑ¡ÏîÊÇ·ñÕıÈ·(°üÀ¨¶àÑ¡)¶àÑ¡´ğ°¸ÊÇstingÀàĞÍÈçAB¿ÉÄÜÓĞ¿Õ¸ñ
-	 * @param OptionÑ¡Ïî1A 2B 3C 4D
-	 * @param topicÕâµÀÌâµÄĞÅÏ¢
+	 * 
+	 * åˆ¤æ–­æˆ‘çš„é€‰é¡¹æ˜¯å¦æ­£ç¡®(åŒ…æ‹¬å¤šé€‰)å¤šé€‰ç­”æ¡ˆæ˜¯stingç±»å‹å¦‚ABå¯èƒ½æœ‰ç©ºæ ¼
+	 * @param Optionå•é€‰é€‰é¡¹ A=1 B=2 C=3 D=4 
+	 * å¤šé€‰é€‰é¡¹  A=1000 B=0100 C=0010 D=0001
+	 * @param topicè¿™é“é¢˜çš„ä¿¡æ¯
 	 * @return
 	 */
-	public static boolean jugementOption(int Option, Topic topic) {
-		
-		return false;
-		
+	public static int jugementOption(int Option, Topic topic) {
+		int flag=0;//0ä¸ºé”™è¯¯ï¼Œ1ä¸ºè‡³å°‘åšå¯¹ä¸€ä¸ªä¸”æ²¡æœ‰é”™è¯¯ï¼Œ2ä¸ºå…¨å¯¹ï¼›
+		String str=topic.getCorrect_Option();//æœªå¤„ç†æ ‡å‡†ç­”æ¡ˆ
+		int currentOption= 0;//æ•´å‹æ ‡å‡†ç­”æ¡ˆ
+		//éå†è½¬åŒ–æ­£ç¡®ç­”æ¡ˆ
+		for(int index=0;index < str.length();index++) {
+			if(str.charAt(index)=='A') {
+				currentOption+=1000;
+			}else if(str.charAt(index)=='B') {
+				currentOption+=100;
+			}else if(str.charAt(index)=='C') {
+				currentOption+=10;
+			}else if(str.charAt(index)=='D') {
+				currentOption+=1;
+			}
+		}
+		//åˆ¤æ–­ç­”æ¡ˆ
+		//å•é€‰æƒ…å†µ
+		if(topic.getType()==1) {
+			if(Option==1000) {
+				flag=2;
+			}else if(Option==100) {
+				flag=2;
+			}else if(Option==10) {
+				flag=2;
+			}else if(Option==1) {;
+				flag=2;
+			}
+		}
+//		å¤šé€‰æƒ…å†µ
+		else if(topic.getType()==2){
+			//è·å¾—é€‰é¡¹ä¸ªæ•°
+			@SuppressWarnings("unused")
+			int Option_num=0;
+			int temp=Option;
+			while(Option>0) {
+				Option_num+=Option%10;
+				Option/=10;
+			}
+			Option=temp;
+			@SuppressWarnings("unused")
+			int currentOption_num=0;
+			int temp1=currentOption;
+			while(currentOption>0) {
+				currentOption_num+=currentOption%10;
+				currentOption/=10;
+			}
+			currentOption=temp1;
+			//å…ˆæ¯”è¾ƒé€‰é¡¹ä¸ªæ•°
+			//å¦‚æœé€‰é¡¹ä¸ªæ•°å¤§äºæ­£ç¡®ç­”æ¡ˆé€‰é¡¹ä¸ªæ•° å…¨é”™
+			if(Option_num>currentOption_num) {
+				flag=0;
+			}
+			//å¦‚æœé€‰é¡¹ä¸ªæ•°ç­‰äºæ­£ç¡®ç­”æ¡ˆä¸ªæ•° å¦‚æœ==é‚£ä¹ˆå¯¹ å¦åˆ™å…¨é”™			
+			else if(Option_num==currentOption_num){
+				if(Option==currentOption) {
+					flag=2;
+				}else {
+					flag=0;
+				}			
+			}
+			//å¦‚æœé€‰é¡¹ä¸ªæ•°å°äºæ­£ç¡®ç­”æ¡ˆä¸ªæ•°
+			else {
+				//è¿™ç§æƒ…å†µæœ€å¤šå¯¹ä¸€ä¸ª
+				flag=1;
+				for(int i=0;i<4;i++) {
+					if(Option%10>currentOption%10) {
+						flag=0;
+						break;
+						}
+					Option/=10;
+					currentOption/=10;
+					}
+				}
+			}				
+		return flag;
 	}
+	/**æµ‹è¯•ç”¨ä¾‹
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Topic test = new Topic();
+		
+		test.setCorrect_Option("ABC");
+		test.setType(2);
+		
+		int test1 = 1000;
+		System.out.println(jugementOption(test1, test));
+	}
+
 }

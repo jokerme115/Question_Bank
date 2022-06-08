@@ -43,7 +43,7 @@ public class topic_util {
 			}else if(str.charAt(index)=='D') {
 				currentOption+=1;
 			}
-		
+		}
 		//判断答案
 		//单选情况
 		if(topic.getType()==1) {
@@ -62,16 +62,20 @@ public class topic_util {
 			//获得选项个数
 			@SuppressWarnings("unused")
 			int Option_num=0;
+			int temp=Option;
 			while(Option>0) {
 				Option_num+=Option%10;
 				Option/=10;
 			}
+			Option=temp;
 			@SuppressWarnings("unused")
 			int currentOption_num=0;
+			int temp1=currentOption;
 			while(currentOption>0) {
 				currentOption_num+=currentOption%10;
 				currentOption/=10;
 			}
+			currentOption=temp1;
 			//先比较选项个数
 			//如果选项个数大于正确答案选项个数 全错
 			if(Option_num>currentOption_num) {
@@ -83,8 +87,7 @@ public class topic_util {
 					flag=2;
 				}else {
 					flag=0;
-				}
-			
+				}			
 			}
 			//如果选项个数小于正确答案个数
 			else {
@@ -100,8 +103,20 @@ public class topic_util {
 					}
 				}
 			}				
-		}
 		return flag;
+	}
+	/**测试用例
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Topic test = new Topic();
+		
+		test.setCorrect_Option("ABC");
+		test.setType(2);
+		
+		int test1 = 1000;
+		System.out.println(jugementOption(test1, test));
 	}
 
 }

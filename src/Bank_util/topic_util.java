@@ -22,17 +22,17 @@ public class topic_util {
 	}
 	/**
 	 * 
-	 * �ж��ҵ�ѡ���Ƿ���ȷ(�����ѡ)��ѡ����sting������AB�����пո�
-	 * @param Option��ѡѡ�� A=1 B=2 C=3 D=4 
-	 * ��ѡѡ��  A=1000 B=0100 C=0010 D=0001
-	 * @param topic��������Ϣ
+	 * 判断我的选项是否正确(包括多选)多选答案是sting类型如AB可能有空格
+	 * @param Option单选选项 A=1 B=2 C=3 D=4 
+	 * 多选选项  A=1000 B=0100 C=0010 D=0001
+	 * @param topic这道题的信息
 	 * @return
 	 */
 	public static int jugementOption(int Option, Topic topic) {
-		int flag=0;//0Ϊ����1Ϊ�������һ����û�д���2Ϊȫ�ԣ�
-		String str=topic.getCorrect_Option();//δ�����׼��
-		int currentOption= 0;//���ͱ�׼��
-		//����ת����ȷ��
+		int flag=0;//0为错误，1为至少做对一个且没有错误，2为全对；
+		String str=topic.getCorrect_Option();//未处理标准答案
+		int currentOption= 0;//整型标准答案
+		//遍历转化正确答案
 		for(int index=0;index < str.length();index++) {
 			if(str.charAt(index)=='A') {
 				currentOption+=1000;
@@ -44,8 +44,8 @@ public class topic_util {
 				currentOption+=1;
 			}
 		}
-		//�жϴ�
-		//��ѡ���
+		//判断答案
+		//单选情况
 		if(topic.getType()==1) {
 			if(Option==1000) {
 				flag=2;
@@ -57,9 +57,9 @@ public class topic_util {
 				flag=2;
 			}
 		}
-//		��ѡ���
+//		多选情况
 		else if(topic.getType()==2){
-			//���ѡ�����
+			//获得选项个数
 			@SuppressWarnings("unused")
 			int Option_num=0;
 			int temp=Option;
@@ -76,12 +76,12 @@ public class topic_util {
 				currentOption/=10;
 			}
 			currentOption=temp1;
-			//�ȱȽ�ѡ�����
-			//���ѡ����������ȷ��ѡ����� ȫ��
+			//先比较选项个数
+			//如果选项个数大于正确答案选项个数 全错
 			if(Option_num>currentOption_num) {
 				flag=0;
 			}
-			//���ѡ����������ȷ�𰸸��� ���==��ô�� ����ȫ��			
+			//如果选项个数等于正确答案个数 如果==那么对 否则全错			
 			else if(Option_num==currentOption_num){
 				if(Option==currentOption) {
 					flag=2;
@@ -89,9 +89,9 @@ public class topic_util {
 					flag=0;
 				}			
 			}
-			//���ѡ�����С����ȷ�𰸸���
+			//如果选项个数小于正确答案个数
 			else {
-				//�����������һ��
+				//这种情况最多对一个
 				flag=1;
 				for(int i=0;i<4;i++) {
 					if(Option%10>currentOption%10) {
@@ -105,8 +105,7 @@ public class topic_util {
 			}				
 		return flag;
 	}
-
-	/**��������
+	/**测试用例
 	 * 
 	 * @param args
 	 */

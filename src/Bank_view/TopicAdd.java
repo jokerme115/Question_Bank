@@ -19,6 +19,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.ButtonGroup;
 
 public class TopicAdd {
 
@@ -35,6 +37,10 @@ public class TopicAdd {
 	private Topic topic = new Topic();
 	private jdbc_util util = new jdbc_util();
 	private JLabel lblNewLabel;
+	private JRadioButtonMenuItem rdbtnmntmNewRadioItem;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnNewRadioButton_1;
 
 	/**
 	 * Launch the application.
@@ -69,10 +75,17 @@ public class TopicAdd {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{75, 0, 327, 225, 0};
-		gridBagLayout.rowHeights = new int[]{60, 0, 60, 35, 21, 70, 47, 0, 21, 21, 23, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{60, 0, 60, 35, 21, 70, 47, 0, 21, 21, 23, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
+		
+		rdbtnmntmNewRadioItem = new JRadioButtonMenuItem("New radio item");
+		GridBagConstraints gbc_rdbtnmntmNewRadioItem = new GridBagConstraints();
+		gbc_rdbtnmntmNewRadioItem.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnmntmNewRadioItem.gridx = 0;
+		gbc_rdbtnmntmNewRadioItem.gridy = 0;
+		frame.getContentPane().add(rdbtnmntmNewRadioItem, gbc_rdbtnmntmNewRadioItem);
 		
 		textTopic = new JTextField();
 		textTopic.setColumns(10);
@@ -105,7 +118,7 @@ public class TopicAdd {
 		frame.getContentPane().add(txtB, gbc_txtB);
 		
 		lblNewLabel = new JLabel("\u9009\u9879C");
-		lblNewLabel.setFont(new Font("µ»œﬂ", Font.PLAIN, 18));
+		lblNewLabel.setFont(new Font("Á≠âÁ∫ø", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -144,19 +157,6 @@ public class TopicAdd {
 		gbc_textCorrectOption.gridy = 10;
 		frame.getContentPane().add(textCorrectOption, gbc_textCorrectOption);
 		
-		JRadioButton Checkbox = new JRadioButton("New radio button");
-		Checkbox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				value = 2;
-			}
-		});
-		GridBagConstraints gbc_Checkbox = new GridBagConstraints();
-		gbc_Checkbox.insets = new Insets(0, 0, 5, 5);
-		gbc_Checkbox.anchor = GridBagConstraints.NORTHWEST;
-		gbc_Checkbox.gridx = 2;
-		gbc_Checkbox.gridy = 11;
-		frame.getContentPane().add(Checkbox, gbc_Checkbox);
-		
 		JButton Add = new JButton("1");
 		Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,12 +167,28 @@ public class TopicAdd {
 				}
 			}
 		});
+		
+		rdbtnNewRadioButton = new JRadioButton("New radio button");
+		buttonGroup.add(rdbtnNewRadioButton);
+		GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
+		gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnNewRadioButton.gridx = 2;
+		gbc_rdbtnNewRadioButton.gridy = 11;
+		frame.getContentPane().add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
 		GridBagConstraints gbc_Add = new GridBagConstraints();
 		gbc_Add.anchor = GridBagConstraints.SOUTH;
-		gbc_Add.insets = new Insets(0, 0, 0, 5);
+		gbc_Add.insets = new Insets(0, 0, 5, 5);
 		gbc_Add.gridx = 2;
 		gbc_Add.gridy = 12;
 		frame.getContentPane().add(Add, gbc_Add);
+		
+		rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
+		buttonGroup.add(rdbtnNewRadioButton_1);
+		GridBagConstraints gbc_rdbtnNewRadioButton_1 = new GridBagConstraints();
+		gbc_rdbtnNewRadioButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnNewRadioButton_1.gridx = 2;
+		gbc_rdbtnNewRadioButton_1.gridy = 13;
+		frame.getContentPane().add(rdbtnNewRadioButton_1, gbc_rdbtnNewRadioButton_1);
 	}
 
 	private void submit(ActionEvent e) throws Exception {
@@ -190,9 +206,9 @@ public class TopicAdd {
 		TopicDao topicdao = new TopicDao();
 		
 		if (topicdao.storeTopic(conn, topic)) {
-			JOptionPane.showMessageDialog(null, "ÃÌº”≥…π¶");
+			JOptionPane.showMessageDialog(null, "Ê∑ªÂä†ÊàêÂäü");
 		}else{
-			JOptionPane.showMessageDialog(null, "ÃÌº” ß∞‹");
+			JOptionPane.showMessageDialog(null, "Ê∑ªÂä†Â§±Ë¥•");
 		}
 	}
 }

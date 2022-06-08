@@ -78,17 +78,9 @@ public class TopicDao {
 	 * @param topic
 	 * @throws Exception 
 	 */
-	public void updateTopic(Connection conn, Topic topic) throws Exception {
+	public boolean updateTopic(Connection conn, Topic topic) throws Exception {
 		//设置sql语句
-		String sql="update topic \r\n" + 
-				"Type=?,\r\n" + 
-				"Topic=?,\r\n" + 
-				"Option_A=?,\r\n" + 
-				"Option_B=?,\r\n" + 
-				"Option_C=?,\r\n" + 
-				"Option_D=?,\r\n" + 
-				"Correct_Option=?\r\n" + 
-				"where id = ?;";
+		String sql="update topic set Type=?, Topic=? , Option_A=?, Option_B=?, Option_C=? , Option_D=? , Correct_Option=? where ID = ?";
 		//获取pstmt对象
 		PreparedStatement pstm =  conn.prepareStatement(sql);
 		//设置参数
@@ -101,11 +93,11 @@ public class TopicDao {
 		pstm.setString(7, topic.getCorrect_Option());
 		pstm.setInt(8,topic.getID());
 		//执行sql
-		int count = pstm.executeUpdate(sql);
+		int count = pstm.executeUpdate();//executeUpdate(sql)不对
 		if(count>0) {
-			System.out.println("修改成功");
+			return true;
 		}else {
-			System.out.println("修改失败");
+			return false;
 		}
 		
 	}

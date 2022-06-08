@@ -52,17 +52,14 @@ public class TopicDao {
 	 */
 	public boolean deleteTopic (Connection conn, Topic topic) throws Exception {
 		//设置sql语句
-		String sql = "delete from topic where id = ? ;" +
-					"select * from topic where id = ? ;";
+		String sql = "delete from topic where id = ? ;";
  		
 		PreparedStatement pstm =  conn.prepareStatement(sql);
-		pstm.setInt(1, topic.getID());
-		pstm.setInt(2, topic.getID());
-		
-		
+		pstm.setInt(1, topic.getID());		
 		
 		int n = pstm.executeUpdate();
-		if (n == 1) {
+		pstm.close();
+		if (n > 1) {
 			return true;
 		}else {
 			return false;
@@ -140,6 +137,7 @@ public class TopicDao {
 		}
 		//释放资源
 		rs.close();
+		pstm.close();
 		return topics;
 	}
 	

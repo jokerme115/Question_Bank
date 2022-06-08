@@ -20,7 +20,7 @@ public class TestUpdateTopic {
 		String Option_C="dismiss";
 		String Option_D="this";
 		String Correct_Option="C";
-		int ID=13;
+		int ID=14;
 		jdbc_util util = new jdbc_util();
 		Connection conn = util.getCon();
 		TopicDao topicdao = new TopicDao();

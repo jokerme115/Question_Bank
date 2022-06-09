@@ -113,14 +113,10 @@ public class topic_util {
 		//判断答案
 		//单选情况
 		if(topic.getType()==1) {
-			if(Option==1000) {
+			if(Option==currentOption) {
 				flag=2;
-			}else if(Option==100) {
-				flag=2;
-			}else if(Option==10) {
-				flag=2;
-			}else if(Option==1) {;
-				flag=2;
+			}else {
+				flag=0;
 			}
 		}
 //		多选情况
@@ -180,7 +176,7 @@ public class topic_util {
 		test.setCorrect_Option("ABC");
 		test.setType(2);
 		
-		int test1 = 1000;
+		int test1 = 0111;
 		System.out.println(jugementOption(test1, test));
 		
 		System.out.println("--------------------------------------");

@@ -33,7 +33,7 @@ public class Main_Topic {
 
 		while (ItTopic.hasNext()) {
 			Topic topic = ItTopic.next();
-			System.out.println("第" + n +"题目:"  + topic.getTopic());
+			System.out.println("第" + n+1 +"题目:"  + topic.getTopic());
 			System.out.println("A:" + topic.getOption_A());
 			System.out.println("B:" + topic.getOption_B());
 			System.out.println("C:" + topic.getOption_C());
@@ -48,7 +48,7 @@ public class Main_Topic {
 //			}else {
 //				
 //			}
-//			n++;
+			n++;
 		}
 		//答题后记录分数(0: 0分 1:半对 2:满分)
 		

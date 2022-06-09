@@ -12,7 +12,13 @@ import Bank_model.Topic;
 
 
 public class topic_util {
-
+/**
+ * 
+ * @param nums
+ * @param start
+ * @param end
+ * @return
+ */
 	public static ArrayList<Integer> randomSet(int nums,int start,int end){
         //1.创建集合容器对象
 		ArrayList<Integer> list = new ArrayList<>();
@@ -178,6 +184,7 @@ public class topic_util {
 		System.out.println(jugementOption(test1, test));
 		
 		System.out.println("--------------------------------------");
+		
 		jdbc_util util = new jdbc_util();
 		Connection conn = util.getCon();
 		int begin = 1;

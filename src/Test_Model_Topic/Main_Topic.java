@@ -9,7 +9,13 @@ import Bank_model.Topic;
 import Bank_util.jdbc_util;
 import Bank_util.topic_util;
 
+/**
+ * 该类是答题主测试
+ * @author HeTao
+ *
+ */
 public class Main_Topic {
+	
 	public static void main(String[] args) throws Exception {
 		//输入题目类型和题目数量以及设置题目分数(分数使用集合存储)
 		int Type = 1;

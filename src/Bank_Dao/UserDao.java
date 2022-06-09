@@ -122,8 +122,5 @@ public class UserDao {
 			return true;
 		}
 	}
-	
-	public boolean storeScoreIntoSql(Connection conn , User user) {
-		return false;
-	}
+
 }

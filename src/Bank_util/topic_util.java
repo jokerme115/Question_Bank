@@ -94,13 +94,13 @@ public class topic_util {
 		int currentOption= 0;//整型标准答案
 		//遍历转化正确答案
 		for(int index=0;index < str.length();index++) {
-			if(str.charAt(index)=='A') {
+			if(str.charAt(index)=='A'||str.charAt(index)=='a') {
 				currentOption+=1000;
-			}else if(str.charAt(index)=='B') {
+			}else if(str.charAt(index)=='B'||str.charAt(index)=='b') {
 				currentOption+=100;
-			}else if(str.charAt(index)=='C') {
+			}else if(str.charAt(index)=='C'||str.charAt(index)=='c') {
 				currentOption+=10;
-			}else if(str.charAt(index)=='D') {
+			}else if(str.charAt(index)=='D'||str.charAt(index)=='d') {
 				currentOption+=1;
 			}
 		}

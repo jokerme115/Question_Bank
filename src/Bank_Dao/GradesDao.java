@@ -1,7 +1,8 @@
 package Bank_Dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.PreparedStatement;import java.sql.SQLException;
+
 import Bank_model.User;
 import Bank_model.UsersGrades;
 
@@ -26,6 +27,7 @@ public class GradesDao {
 		conn.close();	
 	}
 	/**
+	 * 注册用户时使用
 	 * 添加用户成绩表内初次注册时候信息
 	 * 刚开始注册用户时使用此方法(?参数能都这样设置)
 	 * @throws Exception 
@@ -48,11 +50,10 @@ public class GradesDao {
 	 * @return
 	 * @throws Exception 
 	 */
-	public void updateGrades_num(Connection conn,UsersGrades usersGrades) throws Exception {
-		String sql ="UPDATE user_grades SET grades_num =? WHERE userName='?';";
+	public void updateGrades_num(Connection conn,User user) throws Exception {
+		String sql ="UPDATE user_grades SET grades_num = grades_num + 1 WHERE userName= ? ;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, (usersGrades.getGrades_num()+1));
-		pstmt.setString(2,usersGrades.getUserName());
+		pstmt.setString(1,user.getUserName());
 		//释放资源
 		pstmt.close();
 		conn.close();
@@ -66,12 +67,12 @@ public class GradesDao {
 	 * @throws Exception 
 	 */
 	public void addGrades_n(Connection conn,UsersGrades usersGrades) throws Exception {
-		String sql = "ALTER TABLE user_grades ADD grade_'?' INT;";
+		String sql = "ALTER TABLE user_grades ADD grade_? INT;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, usersGrades.getGrades_num());
 		//释放资源
 		pstmt.close();
-		conn.close();
+		conn.close(); 
 	}
 	
 	/**
@@ -79,7 +80,8 @@ public class GradesDao {
 	 * @throws Exception 
 	 */
 	public void updateGrades(Connection conn,UsersGrades usersGrades) throws Exception {
-		String sql ="INSERT INTO grade_? VALUES(  ) WHERE userName='?';";
+		String sql ="INSERT INTO grade_? VALUES(  ) WHERE userName=?;";
+
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, usersGrades.getGrades_num());
 		pstmt.setString(2, usersGrades.getUserName());

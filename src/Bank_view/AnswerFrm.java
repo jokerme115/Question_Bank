@@ -6,7 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.Dialog.ModalExclusionType;
+import java.awt.FlowLayout;
+import javax.swing.JScrollPane;
 
 public class AnswerFrm {
 
@@ -57,6 +58,12 @@ public class AnswerFrm {
 		JPanel AnswerCard = new JPanel();
 		AnswerCard.setBounds(847, 32, 299, 263);
 		frame.getContentPane().add(AnswerCard);
+		AnswerCard.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		
+		
+		JScrollPane scrollPane = new JScrollPane();
+		AnswerCard.add(scrollPane);
 		
 		JLabel Name = new JLabel("New label");
 		Name.setBounds(847, 387, 299, 66);
@@ -70,4 +77,7 @@ public class AnswerFrm {
 		lblNewLabel_1.setBounds(847, 474, 299, 66);
 		frame.getContentPane().add(lblNewLabel_1);
 	}
+
+
+	
 }

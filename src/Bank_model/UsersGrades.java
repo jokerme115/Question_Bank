@@ -3,6 +3,7 @@ package Bank_model;
 public class UsersGrades {
 	private String userName;
 	private int grades_num;
+	
 	public String getUserName() {
 		return userName;
 	}

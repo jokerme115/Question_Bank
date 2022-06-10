@@ -25,6 +25,7 @@ public class GradesDao {
 		//释放资源
 		pstmt.close();
 		conn.close();	
+		
 	}
 	/**
 	 * 注册用户时使用
@@ -32,13 +33,22 @@ public class GradesDao {
 	 * 刚开始注册用户时使用此方法(?参数能都这样设置)
 	 * @throws Exception 
 	 */
-	public void addUserGrades(Connection conn,UsersGrades usersGrades,User user) throws Exception {
+	public boolean addUserGrades(Connection conn,UsersGrades usersGrades,User user) throws Exception {
 		String sql ="INSERT INTO user_grades VALUES(? , 0);";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,user.getUserName());
+		
+
+		//处理结果
+		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
 		conn.close();
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	
@@ -50,13 +60,28 @@ public class GradesDao {
 	 * @return
 	 * @throws Exception 
 	 */
+<<<<<<< Updated upstream
 	public void updateGrades_num(Connection conn,User user) throws Exception {
 		String sql ="UPDATE user_grades SET grades_num = grades_num + 1 WHERE userName= ? ;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,user.getUserName());
+=======
+	public boolean updateGrades_num(Connection conn,UsersGrades usersGrades) throws Exception {
+		String sql ="UPDATE user_grades SET grades_num =? WHERE userName='?';";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, (usersGrades.getGrades_num()+1));
+		pstmt.setString(2,usersGrades.getUserName());
+		//处理结果
+		int n = pstmt.executeUpdate();
+>>>>>>> Stashed changes
 		//释放资源
 		pstmt.close();
 		conn.close();
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}
 	}	
 	
 	/**
@@ -66,27 +91,56 @@ public class GradesDao {
 	 * @param usersGrades
 	 * @throws Exception 
 	 */
+<<<<<<< Updated upstream
 	public void addGrades_n(Connection conn,UsersGrades usersGrades) throws Exception {
 		String sql = "ALTER TABLE user_grades ADD grade_? INT;";
+=======
+	public boolean addGrades_n(Connection conn,UsersGrades usersGrades) throws Exception {
+		String sql = "ALTER TABLE user_grades ADD grade_'?' INT;";
+>>>>>>> Stashed changes
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, usersGrades.getGrades_num());
+		
+		//处理结果
+		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
+<<<<<<< Updated upstream
 		conn.close(); 
+=======
+		conn.close();
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}
+>>>>>>> Stashed changes
 	}
 	
 	/**
 	 * 每次用户做完后更新用户成绩表的最新数据
 	 * @throws Exception 
 	 */
+<<<<<<< Updated upstream
 	public void updateGrades(Connection conn,UsersGrades usersGrades) throws Exception {
 		String sql ="INSERT INTO grade_? VALUES(  ) WHERE userName=?;";
 
+=======
+	public boolean updateGrades(Connection conn,UsersGrades usersGrades) throws Exception {
+		String sql ="INSERT INTO grade_? VALUES(  ) WHERE userName='?';";
+>>>>>>> Stashed changes
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, usersGrades.getGrades_num());
 		pstmt.setString(2, usersGrades.getUserName());
+		//处理结果
+		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-		conn.close();		
+		conn.close();
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}	
 	}
 }

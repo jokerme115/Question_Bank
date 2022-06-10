@@ -17,12 +17,13 @@ public class GradesDao {
 				"	`grades_num` INT NOT NULL DEFAULT '0'\r\n" + 
 				");";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
+		if (pstmt.executeUpdate() > 0) {
+			System.out.println("创建成功");	
+		}
 		
 		//释放资源
 		pstmt.close();
-		conn.close();
-		System.out.println("创建成功");		
+		conn.close();	
 	}
 	/**
 	 * 添加用户成绩表内初次注册时候信息
@@ -30,7 +31,7 @@ public class GradesDao {
 	 * @throws Exception 
 	 */
 	public void addUserGrades(Connection conn,UsersGrades usersGrades,User user) throws Exception {
-		String sql ="INSERT INTO user_grades VALUES('?',0);";
+		String sql ="INSERT INTO user_grades VALUES(? , 0);";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,user.getUserName());
 		//释放资源

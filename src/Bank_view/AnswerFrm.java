@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
@@ -266,7 +265,6 @@ public class AnswerFrm {
 		System.out.println(type);
 		System.out.println(count);
 		System.out.println(topic.isEmpty());
-		this.Topictxt.setText("111");
 		showInformation(topic);
 	}
 	/**

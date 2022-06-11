@@ -3,6 +3,8 @@ package Bank_view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import java.awt.BorderLayout;
 
 public class test {
 
@@ -38,6 +40,9 @@ public class test {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 	}
 
 }

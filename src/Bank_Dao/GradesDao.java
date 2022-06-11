@@ -23,7 +23,7 @@ public class GradesDao {
 		
 		//释放资源
 		pstmt.close();
-		conn.close();	
+	
 		
 	}
 	/**
@@ -42,7 +42,7 @@ public class GradesDao {
 		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-		conn.close();
+
 		if (n == 1) {
 			return true;
 		}else {
@@ -62,13 +62,14 @@ public class GradesDao {
 	public boolean updateGrades_num(Connection conn,User user) throws Exception {
 		String sql ="UPDATE user_grades SET grades_num = grades_num + 1 WHERE userName= ? ;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		user.setGrades_num(user.getGrades_num() + 1);
 		pstmt.setString(1,user.getUserName());
 
 		//处理结果
 		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-		conn.close();
+
 		if (n == 1) {
 			return true;
 		}else {
@@ -85,7 +86,7 @@ public class GradesDao {
 	 */ 
 
 	public boolean addGrades_n(Connection conn,User user) throws Exception {
-		String sql = "ALTER TABLE user_grades ADD grade_? INT;";
+		String sql = "ALTER TABLE user_grades ADD grade_? Double;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, user.getGrades_num());
 		
@@ -93,7 +94,7 @@ public class GradesDao {
 		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-		conn.close(); 
+ 
 		if (n == 1) {
 			return true;
 		}else {
@@ -116,7 +117,7 @@ public class GradesDao {
 		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-		conn.close();
+
 		if (n == 1) {
 			return true;
 		}else {

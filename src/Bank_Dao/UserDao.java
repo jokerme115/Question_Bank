@@ -52,7 +52,7 @@ public class UserDao {
 	 */
 	public boolean SignIn(Connection conn, User user) throws Exception {
 		
-		String sql = "insert into user values(null,?,?,?,?)";
+		String sql = "insert into user values(null,?,?,?,?, null)";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		

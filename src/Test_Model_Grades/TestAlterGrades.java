@@ -14,7 +14,7 @@ import Bank_util.jdbc_util;
 public class TestAlterGrades {
 
 	public static void main(String[] args) throws Exception {
-		int grades_num=2;
+		int grades_num=4;
 		Bank_model.User user =new User();
 		jdbc_util util = new jdbc_util();
 		

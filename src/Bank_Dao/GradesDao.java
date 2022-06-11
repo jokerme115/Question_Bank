@@ -61,7 +61,9 @@ public class GradesDao {
 	 */
 	public boolean updateGrades_num(Connection conn,User user) throws Exception {
 		String sql ="UPDATE user_grades SET grades_num = grades_num + 1 WHERE userName= ? ;";
+		String sql2="UPDATE user SET grades_num = grades_num + 1 WHERE userName= ? ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
 		user.setGrades_num(user.getGrades_num() + 1);
 		pstmt.setString(1,user.getUserName());
 
@@ -69,7 +71,7 @@ public class GradesDao {
 		int n = pstmt.executeUpdate();
 		//ÊÍ·Å×ÊÔ´
 		pstmt.close();
-
+		pstmt2.close();
 		if (n == 1) {
 			return true;
 		}else {

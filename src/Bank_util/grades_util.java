@@ -55,7 +55,7 @@ public class grades_util {
 		user.setTelephone(Telephone);
 		user.setStatus(status);
 		user.setUserPassword(userPassword);
-		user.setGrades_num(2);
+		user.setGrades_num(3);
 		boolean a = addUserGrades(conn, score,user);
 		System.out.println(a);
 	}	

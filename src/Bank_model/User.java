@@ -23,6 +23,7 @@ public class User {
 		this.grades_num = grades_num;
 	}
 
+
 	public int getStatus() {
 		return status;
 	}

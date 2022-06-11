@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JDesktopPane;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -43,17 +45,17 @@ public class mainf {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("管理");
+		frame.setTitle("绠＄悊");
 		frame.setBounds(100, 100, 450, 444);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("用户");
+		JMenu mnNewMenu = new JMenu("鐢ㄦ埛");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("修改");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("淇敼");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modify modify = new modify();
@@ -63,10 +65,10 @@ public class mainf {
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("删除");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("鍒犻櫎");
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("题目");
+		JMenuItem mntmNewMenuItem = new JMenuItem("棰樼洰");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				function function = new function();
@@ -76,7 +78,7 @@ public class mainf {
 		});
 		menuBar.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("开始考试");
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("寮�濮嬭�冭瘯");
 		menuBar.add(mntmNewMenuItem_1);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		

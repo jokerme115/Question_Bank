@@ -9,10 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class delete extends JInternalFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JTable table;
 
 	/**

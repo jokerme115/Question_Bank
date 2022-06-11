@@ -7,11 +7,6 @@ import javax.swing.JInternalFrame;
 public class BookManageInterFrm extends JInternalFrame {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {

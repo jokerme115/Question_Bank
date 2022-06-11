@@ -5,15 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class modify extends JInternalFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -39,15 +36,15 @@ public class modify extends JInternalFrame {
 	public modify() {
 		setClosable(true);
 		setIconifiable(true);
-		setTitle("ĞŞ¸Ä");
+		setTitle("ä¿®æ”¹");
 		setBounds(100, 100, 450, 300);
 		
-		JLabel lblNewLabel = new JLabel("Ãû×Ö£º");
+		JLabel lblNewLabel = new JLabel("åå­—ï¼š");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("ÃÜÂë£º");
+		JLabel lblNewLabel_1 = new JLabel("å¯†ç ï¼š");
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);

@@ -7,6 +7,11 @@ import javax.swing.JInternalFrame;
 public class BookManageInterFrm extends JInternalFrame {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -28,8 +33,9 @@ public class BookManageInterFrm extends JInternalFrame {
 	public BookManageInterFrm() {
 		setIconifiable(true);
 		setClosable(true);
-		setTitle("书籍查询");
+		setTitle("�鼮��ѯ");
 		setBounds(100, 100, 450, 300);
+
 
 	}
 

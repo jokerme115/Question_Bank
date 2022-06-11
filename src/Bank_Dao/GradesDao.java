@@ -1,7 +1,7 @@
 package Bank_Dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 import Bank_model.User;
 import Bank_model.UsersGrades;

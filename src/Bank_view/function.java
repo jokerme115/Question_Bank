@@ -12,6 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class function extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 
 	/**
@@ -36,16 +40,16 @@ public class function extends JInternalFrame {
 	public function() {
 		setIconifiable(true);
 		setClosable(true);
-		setTitle("绠＄悊");
+		setTitle("管理");
 		setBounds(100, 100, 450, 418);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnNewButton = new JButton("澧炲姞");
+		JButton btnNewButton = new JButton("增加");
 		
-		JButton btnNewButton_1 = new JButton("鍒犻櫎");
+		JButton btnNewButton_1 = new JButton("删除");
 		
-		JButton button = new JButton("淇敼");
+		JButton button = new JButton("修改");
 		
 		JLabel lblNewLabel = new JLabel("id:");
 		

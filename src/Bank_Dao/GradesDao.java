@@ -2,8 +2,8 @@ package Bank_Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
 import Bank_model.User;
-import Bank_model.UsersGrades;
 
 public class GradesDao {
 	/**
@@ -11,7 +11,7 @@ public class GradesDao {
 	 * 最开始使用
 	 * @throws Exception 
 	 */
-	public void createUserGrades(Connection conn,UsersGrades usersGrades) throws Exception {
+	public void createUserGrades(Connection conn,User user) throws Exception {
 		String sql = "CREATE TABLE `user_grades`(\r\n" + 
 				"	`userName` VARCHAR(20) NOT NULL,\r\n" + 
 				"	`grades_num` INT NOT NULL DEFAULT '0'\r\n" + 
@@ -24,19 +24,30 @@ public class GradesDao {
 		//释放资源
 		pstmt.close();
 		conn.close();	
+		
 	}
 	/**
+	 * 注册用户时使用
 	 * 添加用户成绩表内初次注册时候信息
 	 * 刚开始注册用户时使用此方法(?参数能都这样设置)
 	 * @throws Exception 
 	 */
-	public void addUserGrades(Connection conn,UsersGrades usersGrades,User user) throws Exception {
+	public boolean addUserGrades(Connection conn,User user) throws Exception {
 		String sql ="INSERT INTO user_grades VALUES(? , 0);";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,user.getUserName());
+		
+
+		//处理结果
+		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
 		conn.close();
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	
@@ -48,14 +59,21 @@ public class GradesDao {
 	 * @return
 	 * @throws Exception 
 	 */
-	public void updateGrades_num(Connection conn,UsersGrades usersGrades) throws Exception {
-		String sql ="UPDATE user_grades SET grades_num =? WHERE userName='?';";
+	public boolean updateGrades_num(Connection conn,User user) throws Exception {
+		String sql ="UPDATE user_grades SET grades_num = grades_num + 1 WHERE userName= ? ;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, (usersGrades.getGrades_num()+1));
-		pstmt.setString(2,usersGrades.getUserName());
+		pstmt.setString(1,user.getUserName());
+
+		//处理结果
+		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
 		conn.close();
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}
 	}	
 	
 	/**
@@ -64,27 +82,45 @@ public class GradesDao {
 	 * @param conn
 	 * @param usersGrades
 	 * @throws Exception 
-	 */
-	public void addGrades_n(Connection conn,UsersGrades usersGrades) throws Exception {
-		String sql = "ALTER TABLE user_grades ADD grade_'?' INT;";
+	 */ 
+
+	public boolean addGrades_n(Connection conn,User user) throws Exception {
+		String sql = "ALTER TABLE user_grades ADD grade_? INT;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, usersGrades.getGrades_num());
+		pstmt.setInt(1, user.getGrades_num());
+		
+		//处理结果
+		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-		conn.close();
+		conn.close(); 
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	/**
 	 * 每次用户做完后更新用户成绩表的最新数据
 	 * @throws Exception 
 	 */
-	public void updateGrades(Connection conn,UsersGrades usersGrades) throws Exception {
-		String sql ="INSERT INTO grade_? VALUES(  ) WHERE userName='?';";
+
+	public boolean updateGrades(Connection conn,User user, double score) throws Exception {
+		String sql ="update user_grades SET grade_?=? WHERE userName=?;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, usersGrades.getGrades_num());
-		pstmt.setString(2, usersGrades.getUserName());
+		pstmt.setInt(1, user.getGrades_num());
+		pstmt.setDouble(2, score);
+		pstmt.setString(3, user.getUserName());
+		//处理结果
+		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-		conn.close();		
+		conn.close();
+		if (n == 1) {
+			return true;
+		}else {
+			return false;
+		}	
 	}
 }

@@ -3,7 +3,6 @@ package Test_Model_Topic;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import Bank_Dao.TopicDao;
 import Bank_model.Topic;
 import Bank_util.jdbc_util;
@@ -16,14 +15,10 @@ import Bank_util.jdbc_util;
 public class TestShowTopic {
 	public static void main(String[] args) throws Exception {
 		jdbc_util util = new jdbc_util();
-		Connection conn = null;
+		Connection conn = util.getCon();
 		ArrayList<Topic> list = null;
-		
-		
-		conn = util.getCon();
-		
+
 		list = TopicDao.selectAllTopic(conn);
-		
 		Iterator<Topic> it =  list.iterator();
 		while (it.hasNext()) {
 			System.out.println(it.next().toString());

@@ -11,7 +11,19 @@ public class User {
 	private String userPassword;
 	private int status;
 	private String Telephone;
+	private int grades_num;
+//	private ArrayList<Integer> score = new ArrayList<>();
 	
+	
+	public int getGrades_num() {
+		return grades_num;
+	}
+
+	public void setGrades_num(int grades_num) {
+		this.grades_num = grades_num;
+	}
+
+
 	public int getStatus() {
 		return status;
 	}

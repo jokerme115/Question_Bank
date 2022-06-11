@@ -32,6 +32,7 @@ public class Main_Topic {
 		
 		
 		Topic = topic_util.getRandomTopic(conn, 1, topic_util.getDateTopic(Type).size(), Count);
+		System.out.println(Topic.size());
 		//每次从List中显示一道题
 		Iterator<Topic> ItTopic=  Topic.iterator();
 		int n = 0;

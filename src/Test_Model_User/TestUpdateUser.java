@@ -7,19 +7,19 @@ import Bank_model.User;
 import Bank_util.jdbc_util;
 
 /**
- * ²âÊÔ¸ü¸ÄÓÃ»§
+ * ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
  * @author HeTao
  *
  */
 public class TestUpdateUser {
 	public static void main(String[] args) throws Exception {
 		int Id = 8;
-		String userName = "ÎºæêÕé1";
+		String userName = "Îºï¿½ï¿½ï¿½ï¿½1";
 		String userPassword = "123456";
-		int status = 2;
+		int status = 2;//no
 		String Telephone = "110";
 		
-		jdbc_util util = new jdbc_util();//¹¤¾ßÀà£¬´´½¨Á¬½Ó
+		jdbc_util util = new jdbc_util();//ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Connection conn = null;			//
 		UserDao userdao = new UserDao();
 		User user = new User();

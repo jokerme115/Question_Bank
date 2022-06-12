@@ -78,14 +78,23 @@ public class mainf {
 		});
 		menuBar.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("开始考试");
-		menuBar.add(mntmNewMenuItem_1);
+		JMenuItem Start = new JMenuItem("开始考试");
+		Start.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				begin(e);
+			}
+		});
+		menuBar.add(Start);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		table = new JDesktopPane();
 		frame.getContentPane().add(table, BorderLayout.CENTER);
 		
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	}
+
+	private void begin(ActionEvent e) {
+		SetTopic.main(null);
 	}
 
 	private void setExtendedState(int maximizedBoth) {

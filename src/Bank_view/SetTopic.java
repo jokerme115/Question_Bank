@@ -2,7 +2,6 @@ package Bank_view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -12,18 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import Bank_model.Topic;
-import Bank_util.topic_util;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SetTopic {
+public class SetTopic{
 
 	private JFrame frame;
-	ArrayList<Topic> topics = new ArrayList<>();
-	private JTextField TopicCount;
-	private JTextField TopicScore;
-	private JComboBox<String> comboBox;
+//	ArrayList<Topic> topics = new ArrayList<>();
+	protected static JTextField TopicCount;
+	protected static JTextField TopicScore;
+	protected static JComboBox<String> comboBox;
 	
 	/**
 	 * Launch the application.
@@ -149,18 +146,18 @@ public class SetTopic {
 					.addComponent(submit)
 					.addContainerGap(218, Short.MAX_VALUE))
 		);
-		try {
-			topics = topic_util.getDateTopic(1);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+		
+//		try {
+//			topics = topic_util.getDateTopic(1);
+//		} catch (Exception e) {
+//			
+//			e.printStackTrace();
+//		}
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
 	private void diliverInformation(ActionEvent e) throws Exception {
-		AnswerFrm answer = new AnswerFrm();
-		
+		AnswerFrm answerfrm = new AnswerFrm();
 		if (comboBox.getSelectedIndex() == 0) {
 			JOptionPane.showMessageDialog(null, "请选择题型");
 		}else if (TopicScore.getText() == null) {
@@ -168,12 +165,13 @@ public class SetTopic {
 		}else if (TopicCount.getText() == null) {
 			JOptionPane.showMessageDialog(null, "题目数量不能为空");
 		}else {
-			
-			answer.setScore(Integer.parseInt(TopicScore.getText()));
-			answer.setCount(Integer.parseInt(TopicCount.getText()));
-			answer.setType(comboBox.getSelectedIndex());	
-			AnswerFrm.main(null);		
+			answerfrm.main(null);
 			frame.dispose();
 		}
 	}
+
+//	public AnswerFrm getAnswerfrm() {
+//		return answerfrm;
+//	}
+	
 }

@@ -9,6 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/**
+ * 修改窗口
+ * @author AiSong
+ *
+ */
 public class modify extends JInternalFrame {
 	/**
 	 * 

@@ -34,11 +34,13 @@ public class LogOnFrm {
 	private JPasswordField LoginPassWord;
 	private jdbc_util util = new jdbc_util();
 	private UserDao userdao = new UserDao();
+	private mainf Main = new mainf();
+	User user1 = new User();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -180,7 +182,7 @@ public class LogOnFrm {
 	/**
 	 * 登录button 事件
 	 */
-	protected void logActionPerformed(ActionEvent event) {
+	private void logActionPerformed(ActionEvent event) {
 		String userName = this.LoginUserName.getText();
 		String passWord = new String(this.LoginPassWord.getPassword());
 		
@@ -194,6 +196,7 @@ public class LogOnFrm {
 			return;
 		}
 		User user = new User(userName, passWord);
+		user1 = user;
 		
 		Connection conn = null;
 		
@@ -201,7 +204,13 @@ public class LogOnFrm {
 			conn = util.getCon();
 			User currentUser = userdao.login(conn, user);
 			if (currentUser != null) {
-				JOptionPane.showMessageDialog(null, "登录成功");;
+				JOptionPane.showMessageDialog(null, "登录成功");
+				try {
+					Main.main(null);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				this.frame.dispose();
 			}else {
 				JOptionPane.showMessageDialog(null, "账号或者密码错误");
 				resetValueActionPerformed(event);
@@ -213,7 +222,13 @@ public class LogOnFrm {
 			
 		}
 	}
-
+	protected User getUser() {
+		return user1;
+	}
+	
+	protected mainf getMain() {
+		return Main;
+	}
 	/**
 	 * 重置button 事件处理
 	 * @param e

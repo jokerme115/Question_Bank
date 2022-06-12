@@ -30,12 +30,13 @@ public class AnswerFrm {
 	private int score;
 	private int count;
 	private int Index = 1;
+	
 	JLabel Topictxt;
 	JRadioButton Aoption;
 	JRadioButton Boption;
 	JRadioButton Coption;
 	JRadioButton Doption;
-	private int [] totalScore = new int[count];
+//	private int [] totalScore = new int[count];
 	private ArrayList<Topic> topic = new ArrayList<>();
 	private jdbc_util util2 = new jdbc_util();
 	private Connection conn = null;

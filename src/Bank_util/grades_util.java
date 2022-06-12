@@ -16,7 +16,7 @@ public class grades_util {
 	public static boolean addUserGrades(Connection conn, double score,User user) throws Exception{
 		//更新做题总次数
 		GradesDao gradesdao = new GradesDao();
-		user.setGrades_num(user.getGrades_num()+1);
+		user.setGrades_num(user.getGrades_num()+1);//mysql中做题次数+1
 		if (gradesdao.updateGrades_num(conn, user)) {
 			user.setGrades_num(user.getGrades_num()+1);
 			//插入题目分数
@@ -46,7 +46,6 @@ public class grades_util {
 		//创建四件套 连接-对象-发送给sql
 		jdbc_util util = new jdbc_util();
 		Connection conn = null;
-//		UserDao userdao = new UserDao();
 		User user = new User();
 		
 		conn = util.getCon();
@@ -55,7 +54,9 @@ public class grades_util {
 		user.setTelephone(Telephone);
 		user.setStatus(status);
 		user.setUserPassword(userPassword);
-		user.setGrades_num(3);
+		user.setGrades_num(2);
+		
+		
 		boolean a = addUserGrades(conn, score,user);
 		System.out.println(a);
 	}	

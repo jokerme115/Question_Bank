@@ -19,7 +19,7 @@ public class mainf {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,11 +51,11 @@ public class mainf {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("�û�");
+		JMenu mnNewMenu = new JMenu("\u7528\u6237");
 		mnNewMenu.setBackground(Color.WHITE);
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("�޸�");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("\u4FEE\u6539");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modify modify = new modify();
@@ -65,17 +65,7 @@ public class mainf {
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("ɾ��");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				delete delete = new delete();
-				delete.setVisible(true);
-				table.add(delete);
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem_3);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("��Ŀ");
+		JMenuItem mntmNewMenuItem = new JMenuItem("\u9898\u76EE");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				function function = new function();
@@ -85,7 +75,7 @@ public class mainf {
 		});
 		menuBar.add(mntmNewMenuItem);
 		
-		JMenuItem Start = new JMenuItem("��ʼ����");
+		JMenuItem Start = new JMenuItem("\u5F00\u59CB\u8003\u8BD5");
 		Start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				begin(e);

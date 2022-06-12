@@ -31,7 +31,7 @@ public class AnswerFrm {
 	private int type;
 	private int score;
 	private int count;
-	private int Index = 1;
+	private int Index = 0;
 	
 	JLabel Topictxt;
 	JRadioButton Aoption;

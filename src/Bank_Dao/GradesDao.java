@@ -60,19 +60,20 @@ public class GradesDao {
 	 * @throws Exception 
 	 */
 	public boolean updateGrades_num(Connection conn,User user) throws Exception {
-		String sql ="UPDATE user_grades SET grades_num = grades_num + 1 WHERE userName= ? ;";
-		String sql2="UPDATE user SET grades_num = grades_num + 1 WHERE userName= ? ";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
+		String sql1 ="UPDATE user_grades SET grades_num = grades_num + 1 WHERE userName= ?;";
+		String sql2	="UPDATE user SET grades_num = grades_num + 1 WHERE userName= ?;";
+		PreparedStatement pstmt1 = conn.prepareStatement(sql1);
 		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
 		user.setGrades_num(user.getGrades_num() + 1);
-		pstmt.setString(1,user.getUserName());
-
+		pstmt1.setString(1,user.getUserName());
+		pstmt2.setString(1,user.getUserName());
 		//处理结果
-		int n = pstmt.executeUpdate();
+		int n = pstmt1.executeUpdate();
+		int m = pstmt2.executeUpdate();
 		//释放资源
-		pstmt.close();
+		pstmt1.close();
 		pstmt2.close();
-		if (n == 1) {
+		if (n == 1&&m==1) {
 			return true;
 		}else {
 			return false;

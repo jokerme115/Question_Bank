@@ -51,11 +51,11 @@ public class mainf {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("ÓÃ»§");
+		JMenu mnNewMenu = new JMenu("ï¿½Ã»ï¿½");
 		mnNewMenu.setBackground(Color.WHITE);
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("ÐÞ¸Ä");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("ï¿½Þ¸ï¿½");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modify modify = new modify();
@@ -65,10 +65,17 @@ public class mainf {
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("É¾³ý");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("É¾ï¿½ï¿½");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				delete delete = new delete();
+				delete.setVisible(true);
+				table.add(delete);
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("ÌâÄ¿");
+		JMenuItem mntmNewMenuItem = new JMenuItem("ï¿½ï¿½Ä¿");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				function function = new function();
@@ -78,7 +85,7 @@ public class mainf {
 		});
 		menuBar.add(mntmNewMenuItem);
 		
-		JMenuItem Start = new JMenuItem("¿ªÊ¼¿¼ÊÔ");
+		JMenuItem Start = new JMenuItem("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½");
 		Start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				begin(e);

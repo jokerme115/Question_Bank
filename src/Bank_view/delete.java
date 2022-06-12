@@ -35,7 +35,9 @@ public class delete extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public delete() {
-		setTitle("删除");
+		setIconifiable(true);
+		setClosable(true);
+		setTitle("\u5220\u9664");
 		setBounds(100, 100, 450, 427);
 		
 		JScrollPane scrollPane = new JScrollPane();

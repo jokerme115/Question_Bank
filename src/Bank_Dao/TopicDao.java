@@ -141,5 +141,34 @@ public class TopicDao {
 		return topics;
 	}
 	
-	
+	public static Topic selectOneTopic (Connection conn, int Id) throws Exception {
+		//设置sql语句
+		String sql = "select * from topic where id = ?;";
+		
+		//获取pstmt对象
+		PreparedStatement pstm =  conn.prepareStatement(sql);
+		pstm.setInt(1, Id);
+		//执行sql
+		ResultSet rs =pstm.executeQuery();
+		
+		Topic oneTopic = null;
+		
+		//获取数据
+		int id =rs.getInt("ID");
+		int Type = rs.getInt("Type");
+		String Topic = rs.getString("Topic");
+		String Option_A = rs.getString("Option_A");
+		String Option_B = rs.getString("Option_B");
+		String Option_C = rs.getString("Option_C");
+		String Option_D = rs.getString("Option_D");
+		String Correct_Option = rs.getString("Correct_Option");
+			
+		//封装Topic对象 Jun.6修改
+		oneTopic = new Topic(Type, id, Topic, Option_A, Option_B, Option_C, Option_D,Correct_Option);
+
+		//释放资源
+		rs.close();
+		pstm.close();
+		return oneTopic;
+	}
 }

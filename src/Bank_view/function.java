@@ -25,17 +25,18 @@ public class function extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField Id;
+	private  JTextField Id;
 	jdbc_util util = new jdbc_util();
 	Connection conn = null;
 	TopicDao topicdao = new TopicDao();
 	Topic topic = new Topic();
 
+
 	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,9 +84,20 @@ public class function extends JInternalFrame {
 		JButton button = new JButton("ÐÞ¸Ä");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				function_modify function_modify = new function_modify();
-				function_modify.setVisible(true);
-				mainf.table.add(function_modify);
+					function_modify function_modify;
+				
+					try {
+						function_modify = new function_modify();
+						function_modify.setVisible(true);
+						mainf.table.add(function_modify);
+						function.this.setVisible(false);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+
+
 			}
 		});
 		
@@ -137,10 +149,7 @@ public class function extends JInternalFrame {
 	}
 
 	private void DeleteTopic(ActionEvent e) throws Exception {
-		
-		
 		int ID=Integer.parseInt(Id.getText());
-		
 		topic.setID(ID);
 		conn = util.getCon();
 		

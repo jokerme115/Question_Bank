@@ -10,6 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import Bank_Dao.TopicDao;
 import Bank_model.Topic;
 import Bank_util.jdbc_util;
 
@@ -24,7 +25,7 @@ import java.sql.Connection;
  * @author HeTao
  *
  */
-public class function_modify extends JInternalFrame {
+public class function_modify2 extends JInternalFrame {
 	/**
 	 * 
 	 */
@@ -35,7 +36,7 @@ public class function_modify extends JInternalFrame {
 	private JTextField Aoption;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
-
+	private int id = function.ID;
 	
 	jdbc_util util = new jdbc_util();
 	Connection conn = null;
@@ -48,7 +49,7 @@ public class function_modify extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					function_modify frame = new function_modify();
+					function_modify2 frame = new function_modify2();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,7 +62,9 @@ public class function_modify extends JInternalFrame {
 	 * Create the frame.
 	 * @throws Exception 
 	 */
-	public function_modify() throws Exception {
+	public function_modify2() throws Exception {
+		conn = util.getCon();
+		topic= TopicDao.selectOneTopic(conn, id);
 		
 		
 		getContentPane().setFont(new Font("ËÎÌו", Font.PLAIN, 18));
@@ -81,7 +84,7 @@ public class function_modify extends JInternalFrame {
 		Coption = new JTextField(topic.getOption_C());
 		Coption.setColumns(10);
 		
-		Doption = new JTextField(topic.getOption_A());
+		Doption = new JTextField(topic.getOption_D());
 		Doption.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
 		Doption.setColumns(10);
 

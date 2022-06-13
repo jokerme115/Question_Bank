@@ -72,7 +72,6 @@ public class LogInFrm {
 	 */
 	private void initialize() {
 		FrmLogOn = new JFrame();
-		FrmLogOn.setAlwaysOnTop(true);
 		FrmLogOn.setResizable(false);
 		FrmLogOn.setBackground(Color.WHITE);
 		FrmLogOn.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -230,6 +229,7 @@ public class LogInFrm {
 
 	private void ReturnToLogin(ActionEvent event) {
 		FrmLogOn.dispose();
+		LogOnFrm.main(null);
 	}
 	
 	

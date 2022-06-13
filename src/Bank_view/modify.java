@@ -8,7 +8,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 修改窗口
@@ -66,6 +69,11 @@ public class modify extends JInternalFrame {
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("提交");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateInformation(e);
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("取消");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -114,5 +122,9 @@ public class modify extends JInternalFrame {
 		);
 		getContentPane().setLayout(groupLayout);
 
+	}
+
+	private void updateInformation(ActionEvent e) {
+		
 	}
 }

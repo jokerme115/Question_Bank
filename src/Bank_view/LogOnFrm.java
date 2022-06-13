@@ -33,6 +33,7 @@ public class LogOnFrm {
 	private JTextField LoginUserName;
 	private JPasswordField LoginPassWord;
 	private jdbc_util util = new jdbc_util();
+	static User currentUser;
 	private UserDao userdao = new UserDao();
 	private mainf Main = new mainf();
 	User user1 = new User();
@@ -40,7 +41,7 @@ public class LogOnFrm {
 	/**
 	 * Launch the application.
 	 */
-	public void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -202,7 +203,7 @@ public class LogOnFrm {
 		
 		try {
 			conn = util.getCon();
-			User currentUser = userdao.login(conn, user);
+			currentUser = userdao.login(conn, user);
 			if (currentUser != null) {
 				JOptionPane.showMessageDialog(null, "µÇÂ¼³É¹¦");
 				try {

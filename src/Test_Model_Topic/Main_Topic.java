@@ -19,7 +19,7 @@ public class Main_Topic {
 	public static void main(String[] args) throws Exception {
 		//输入题目类型和题目数量以及设置题目分数(分数使用集合存储)
 		int Type = 1;
-		int Count = 5;
+		int Count = 4;
 		int score1 = 5;
 		int score2 = 3;
 		int sum = 0;
@@ -31,7 +31,7 @@ public class Main_Topic {
 		Connection conn = util2.getCon();
 		
 		
-		Topic = topic_util.getRandomTopic(conn, 1, topic_util.getDateTopic(Type).size(), Count);
+		Topic = topic_util.getRandomTopic(conn, 0, topic_util.getDateTopic(Type).size(), Count, Type);
 		System.out.println(Topic.size());
 		//每次从List中显示一道题
 		Iterator<Topic> ItTopic=  Topic.iterator();
@@ -46,8 +46,8 @@ public class Main_Topic {
 			System.out.println("C:" + topic.getOption_C());
 			System.out.println("D:" + topic.getOption_D());
 			
-			int result = scan.nextInt();
-			totalScore[n] =  topic_util.jugementOption(result, topic);
+			double result = scan.nextDouble();
+			totalScore[n] =  (int) topic_util.jugementOption(result, topic);
 			System.out.println(totalScore[n]);
 			n++;
 		}

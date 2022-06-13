@@ -15,6 +15,7 @@ import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Bank_model.Topic;
+import Bank_model.User;
 import Bank_util.jdbc_util;
 import Bank_util.topic_util;
 
@@ -24,22 +25,27 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
+import javax.swing.ScrollPaneConstants;
 
 public class AnswerFrm {
 
 	private JFrame frame;
 	private int type;
-	private int score;
+	private double score1 = 0;
+	private double score2 = 0;
+	private double Tscore = 0;
 	private int count;
 	private int Index = 0;
+	User user = null;
 	
 	JLabel Topictxt;
+	ButtonGroup group;
 	JRadioButton Aoption;
 	JRadioButton Boption;
 	JRadioButton Coption;
 	JRadioButton Doption;
 	
-	private int [] totalScore = new int[count];
+	private double [] totalScore ;
 	private ArrayList<Topic> topic = new ArrayList<>();
 	private jdbc_util util2 = new jdbc_util();
 	private Connection conn = null;
@@ -49,7 +55,7 @@ public class AnswerFrm {
 	/**
 	 * Launch the application.
 	 */
-	public void main(String[] args){
+	public static void main(String[] args){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -68,8 +74,10 @@ public class AnswerFrm {
 	 * @throws Exception 
 	 */
 	public AnswerFrm() throws Exception {
+		this.user = LogOnFrm.currentUser;
 		getInformation();
 		initialize();
+
 	}
 
 	/**
@@ -93,12 +101,14 @@ public class AnswerFrm {
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		
 		Aoption = new JRadioButton("");
 		Aoption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				result = 1000;
+				result += 1000;
 			}
 		});
 		Aoption.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -115,7 +125,7 @@ public class AnswerFrm {
 		Boption = new JRadioButton("");
 		Boption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				result = 100;
+				result += 100;
 			}
 		});
 		Boption.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -123,7 +133,7 @@ public class AnswerFrm {
 		Coption = new JRadioButton("");
 		Coption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				result = 10;
+				result += 10;
 			}
 		});
 		Coption.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -131,23 +141,26 @@ public class AnswerFrm {
 		Doption = new JRadioButton("");
 		Doption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				result = 1;
+				result += 1;
 			}
 		});
 		Doption.setFont(new Font("宋体", Font.PLAIN, 20));
 		
 		if (type == 1) {			
-			ButtonGroup group = new ButtonGroup();
+			group = new ButtonGroup();
 			group.add(Aoption);
 			group.add(Boption);
 			group.add(Coption);
 			group.add(Doption);
 		}
-		
 		final JButton up = new JButton("\u4E0A\u4E00\u9898");
 		up.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				up(e);
+				try {
+					up(e);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		up.setFont(new Font("宋体", Font.PLAIN, 16));
@@ -255,37 +268,112 @@ public class AnswerFrm {
 		frame.getContentPane().add(AnswerCard);
 		AnswerCard.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		AnswerCard.add(scrollPane);
-		
-		JLabel Name = new JLabel();
+		JLabel Name = new JLabel(String.valueOf("ID" + user.getId()));
 		Name.setBounds(847, 387, 299, 66);
 		frame.getContentPane().add(Name);
 		
 		
-		JButton submit = new JButton("");
+		JButton submit = new JButton("\u63D0\u4EA4");
+		submit.setFont(new Font("宋体", Font.PLAIN, 25));
+		submit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				submit(e);
+			}
+		});
 		submit.setBounds(847, 550, 299, 54);
 		frame.getContentPane().add(submit);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
+		JLabel lblNewLabel_1 = new JLabel("用户名:" + user.getUserName());
 		lblNewLabel_1.setBounds(847, 474, 299, 66);
 		frame.getContentPane().add(lblNewLabel_1);
 	}
-	
-	//上一题键
-	private void up(ActionEvent e) {
-		Index -=1;
-		if (totalScore[Index] == 1000) {
-			Aoption.doClick();
+	/**
+	 * 提交键
+	 * @param e
+	 */
+	private void submit(ActionEvent e) {
+		if (checkTopic()) {
+			translate();
+			System.out.println(Tscore);
+		}else {
+			JOptionPane.showMessageDialog(null, "您还有题没做完啊!");
 		}
+	}
+	
+	private double translate() {
+		double temp = 0;
+		for (int i = 0; i < count; i++) {
+			temp = topic_util.jugementOption(totalScore[i], topic.get(i));
+			if (temp == 1) {
+				totalScore[i] = score2; 
+			}else if (temp == 2) {
+				totalScore[i] = score1;
+			}else {
+				totalScore[i] = 0;
+			}
+			Tscore += totalScore[i];
+		}
+		return Tscore;
+	}
+	/**
+	 * 判断题是否做完
+	 * @return
+	 */
+	private boolean checkTopic() {
+		for (double e : totalScore) {
+			if (e == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	//上一题键
+	private void up(ActionEvent e) throws Exception {
+		totalScore [Index] = result;
+		if (Index - 1 < 0) {
+			JOptionPane.showMessageDialog(null, "这是第一道题了哦");
+		}else {
+			Index -= 1;
+			this.showInformation(topic);
+			if (totalScore[Index] > 0) {
+				switch ((int)totalScore[Index]) {
+				case 1000: Aoption.doClick();break;
+				case 100: Boption.doClick();break;
+				case 10: Coption.doClick();break;
+				case 1: Doption.doClick();break;
+				default:break;
+				}
+			}else {
+				group.clearSelection();
+			}
+			
+		}
+		
 	}
 	
 	//下一题键
 	private void down(ActionEvent e) throws Exception {
 		totalScore [Index] = result;
-		result = 0;
-		Index += 1;
-		this.showInformation(topic);
+		
+		if (Index + 1 >= count) {
+			JOptionPane.showMessageDialog(null, "这是最后一道题了哦");
+		}else {
+			result = 0;
+			Index += 1;
+			this.showInformation(topic);
+			if (totalScore[Index] == 0) {
+				group.clearSelection();
+			}else {
+				switch ((int)totalScore[Index]) {
+				case 1000: Aoption.doClick();break;
+				case 100: Boption.doClick();break;
+				case 10: Coption.doClick();break;
+				case 1: Doption.doClick();break;
+				default:break;
+				}
+			}
+		}
 	}
 
 
@@ -293,6 +381,7 @@ public class AnswerFrm {
 	private void Begin(ActionEvent e) {
 		try {
 			this.showInformation(topic);
+			totalScore = new double[count];
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			System.out.println(topic.size());
@@ -302,9 +391,12 @@ public class AnswerFrm {
 		}
 		
 	}
-
 	
-	
+	/**
+	 * 显示题目到窗口中
+	 * @param topic2
+	 * @throws Exception
+	 */
 	private void showInformation(ArrayList<Topic> topic2) throws Exception {
 		this.Topictxt.setText(topic2.get(Index).getTopic());
 		this.Aoption.setText(topic2.get(Index).getOption_A());
@@ -321,40 +413,13 @@ public class AnswerFrm {
 	 * @throws Exception
 	 */
 	public void getInformation() throws Exception{
-		setScore(Integer.parseInt(SetTopic.TopicScore.getText()));
-		setCount(Integer.parseInt(SetTopic.TopicCount.getText()));
-		setType(SetTopic.comboBox.getSelectedIndex());
+		score1 = Double.parseDouble(SetTopic.TopicScore.getText());
+		count = Integer.parseInt(SetTopic.TopicCount.getText());
+		type = SetTopic.comboBox.getSelectedIndex();
 		
-		System.out.println(type);
-		System.out.println(count);
 		conn = util2.getCon();
-		this.topic = topic_util.getRandomTopic(conn, 1, topic_util.getDateTopic(type).size(), count);
+		this.topic = topic_util.getRandomTopic(conn, 0, topic_util.getDateTopic(type).size(), count, type);
 
 	}
-	/**
-	 * 得到SetTopic中的值
-	 * @return
-	 */
 	
-	public int getType() {
-		return type;
-	}
-	public int getIndex() {
-		return Index;
-	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
-	public void setType(int type) {
-		this.type = type;
-	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
 }

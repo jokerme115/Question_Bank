@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class function extends JInternalFrame {
 	/**
@@ -26,10 +27,12 @@ public class function extends JInternalFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private  JTextField Id;
+	public static int id = 0;
 	jdbc_util util = new jdbc_util();
 	Connection conn = null;
 	TopicDao topicdao = new TopicDao();
 	Topic topic = new Topic();
+	private JTable table;
 
 
 	
@@ -64,6 +67,13 @@ public class function extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				try {
+					add(e);
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
@@ -84,10 +94,14 @@ public class function extends JInternalFrame {
 		JButton button = new JButton("–ﬁ∏ƒ");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					function_modify function_modify;
 				
 					try {
-						function_modify = new function_modify();
+						if (Id.getText() != "") {
+							id = Integer.parseInt(Id.getText());
+						}else {
+							JOptionPane.showMessageDialog(null, "«Î ‰»ÎID");
+						}
+						function_modify function_modify = new function_modify();
 						function_modify.setVisible(true);
 						mainf.table.add(function_modify);
 						function.this.setVisible(false);
@@ -144,8 +158,18 @@ public class function extends JInternalFrame {
 						.addComponent(btnNewButton))
 					.addGap(47))
 		);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		getContentPane().setLayout(groupLayout);
 
+	}
+
+	private void add(ActionEvent e) throws Exception {
+		function_modify2 function_modify2 = new function_modify2();
+		function_modify2.main(null);
+		this.dispose();
+		
 	}
 
 	private void DeleteTopic(ActionEvent e) throws Exception {
@@ -160,5 +184,4 @@ public class function extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "…æ≥˝ ß∞‹");
 		}
 	}
-
 }

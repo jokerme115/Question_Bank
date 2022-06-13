@@ -1,6 +1,7 @@
 package Bank_view;
 
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JInternalFrame;
 import javax.swing.GroupLayout;
@@ -33,6 +34,7 @@ public class modify extends JInternalFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JLabel lblNewLabel_2;
+	Frame frame = mainf.frame;
 	User user1 =LogOnFrm.currentUser;
 
 	/**
@@ -82,9 +84,9 @@ public class modify extends JInternalFrame {
 					updateInformation(e);
 					JOptionPane.showMessageDialog(null,"修改成功");
 					LogOnFrm.main(null);
-					mainf.dispose();
+					frame.dispose();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
+
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null,"修改失败");
 				}
@@ -156,7 +158,7 @@ public class modify extends JInternalFrame {
 		user.setUserName(userName);
 		user.setUserPassword(userPassword);
 		user.setTelephone(Telephone);
-		user.setId(user1.getI);
+		user.setId(user1.getId());
 		boolean a = userdao.updateUser(conn, user);
 		System.out.println(a);
 	}

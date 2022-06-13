@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 public class AnswerFrm {
 
@@ -270,7 +271,9 @@ public class AnswerFrm {
 		AnswerCard.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel Name = new JLabel(String.valueOf("ID" + user.getId()));
-		Name.setBounds(847, 387, 299, 66);
+		Name.setHorizontalAlignment(SwingConstants.CENTER);
+		Name.setFont(new Font("宋体", Font.PLAIN, 24));
+		Name.setBounds(847, 360, 299, 66);
 		frame.getContentPane().add(Name);
 		
 		
@@ -289,7 +292,9 @@ public class AnswerFrm {
 		frame.getContentPane().add(submit);
 		
 		JLabel lblNewLabel_1 = new JLabel("用户名:" + user.getUserName());
-		lblNewLabel_1.setBounds(847, 474, 299, 66);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 24));
+		lblNewLabel_1.setBounds(847, 461, 299, 66);
 		frame.getContentPane().add(lblNewLabel_1);
 	}
 	/**

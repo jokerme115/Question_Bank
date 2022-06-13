@@ -8,16 +8,30 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import Bank_Dao.TopicDao;
+import Bank_model.Topic;
+import Bank_util.jdbc_util;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.awt.event.ActionEvent;
 
 public class function extends JInternalFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JTextField Id;
+	jdbc_util util = new jdbc_util();
+	Connection conn = null;
+	TopicDao topicdao = new TopicDao();
+	Topic topic = new Topic();
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -46,15 +60,39 @@ public class function extends JInternalFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnNewButton = new JButton("Ôö¼Ó");
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("É¾³ý");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "ÊÇ·ñÉ¾³ý") == 0) {
+					try {
+						DeleteTopic(e);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		
 		JButton button = new JButton("ÐÞ¸Ä");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				function_modify function_modify = new function_modify();
+				function_modify.setVisible(true);
+				mainf.table.add(function_modify);
+			}
+		});
 		
 		JLabel lblNewLabel = new JLabel("id:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		Id = new JTextField();
+		Id.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -64,7 +102,7 @@ public class function extends JInternalFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel)
 							.addGap(18)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(Id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(btnNewButton)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -86,7 +124,7 @@ public class function extends JInternalFrame {
 					.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(Id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(30)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(button)
@@ -97,4 +135,21 @@ public class function extends JInternalFrame {
 		getContentPane().setLayout(groupLayout);
 
 	}
+
+	private void DeleteTopic(ActionEvent e) throws Exception {
+		
+		
+		int ID=Integer.parseInt(Id.getText());
+		
+		topic.setID(ID);
+		conn = util.getCon();
+		
+		boolean a = topicdao.deleteTopic(conn, topic);
+		if (a) {
+			JOptionPane.showMessageDialog(null, "É¾³ý³É¹¦");
+		}else {
+			JOptionPane.showMessageDialog(null, "É¾³ýÊ§°Ü");
+		}
+	}
+
 }

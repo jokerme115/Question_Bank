@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class function extends JInternalFrame {
 	/**
@@ -30,6 +32,7 @@ public class function extends JInternalFrame {
 	Connection conn = null;
 	TopicDao topicdao = new TopicDao();
 	Topic topic = new Topic();
+	private JTable allTopic;
 
 
 	
@@ -59,6 +62,8 @@ public class function extends JInternalFrame {
 		setBounds(100, 100, 450, 418);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		
 		
 		JButton btnNewButton = new JButton("Ôö¼Ó");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -144,6 +149,23 @@ public class function extends JInternalFrame {
 						.addComponent(btnNewButton))
 					.addGap(47))
 		);
+		
+		allTopic = new JTable();
+		allTopic.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"\u7F16\u53F7", "\u9898\u76EE\u7C7B\u578B (1\u4E3A\u5355\u9009 2\u4E3A\u591A\u9009)", "\u9898\u76EE", "\u9009\u9879A", "\u9009\u9879B", "\u9009\u9879C", "\u9009\u9879D"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		scrollPane.setViewportView(allTopic);
 		getContentPane().setLayout(groupLayout);
 
 	}
@@ -160,5 +182,6 @@ public class function extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "É¾³ýÊ§°Ü");
 		}
 	}
-
+	
+//	private void fillTable();
 }

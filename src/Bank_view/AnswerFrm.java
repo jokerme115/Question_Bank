@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Bank_model.Topic;
 import Bank_model.User;
+import Bank_util.grades_util;
 import Bank_util.jdbc_util;
 import Bank_util.topic_util;
 
@@ -277,7 +278,11 @@ public class AnswerFrm {
 		submit.setFont(new Font("宋体", Font.PLAIN, 25));
 		submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				submit(e);
+				try {
+					submit(e);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		submit.setBounds(847, 550, 299, 54);
@@ -290,11 +295,12 @@ public class AnswerFrm {
 	/**
 	 * 提交键
 	 * @param e
+	 * @throws Exception 
 	 */
-	private void submit(ActionEvent e) {
+	private void submit(ActionEvent e) throws Exception {
 		if (checkTopic()) {
 			translate();
-			System.out.println(Tscore);
+			grades_util.addUserGrades(conn, Tscore, user);
 		}else {
 			JOptionPane.showMessageDialog(null, "您还有题没做完啊!");
 		}

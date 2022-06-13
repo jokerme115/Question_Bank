@@ -53,7 +53,7 @@ public class modify extends JInternalFrame {
 		setTitle("修改");
 		setBounds(100, 100, 450, 300);
 		
-		JLabel lblNewLabel = new JLabel("昵称：");
+		JLabel lblNewLabel = new JLabel("用户名：");
 		
 		textField = new JTextField();
 		textField.setColumns(10);

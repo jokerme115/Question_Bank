@@ -36,22 +36,18 @@ public class GradesDao {
 	 * 刚开始注册用户时使用此方法(?参数能都这样设置)
 	 * @throws Exception 
 	 */
-	public boolean addUserGrades(Connection conn,User user) throws Exception {
+	public static void addUserGrades(Connection conn,User user) throws Exception {
 		String sql ="INSERT INTO user_grades VALUES(? , 0);";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,user.getUserName());
 		
 
 		//处理结果
-		int n = pstmt.executeUpdate();
+		pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
 
-		if (n == 1) {
-			return true;
-		}else {
-			return false;
-		}
+		
 	}
 	
 	

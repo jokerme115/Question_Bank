@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import Bank_Dao.GradesDao;
 import Bank_Dao.UserDao;
 
 import javax.swing.JPasswordField;
@@ -217,6 +218,7 @@ public class LogInFrm {
 					boolean a = userdao.SignIn(conn, user);
 					if (a) {
 						JOptionPane.showMessageDialog(null, "×¢²á³É¹¦");
+						GradesDao.addUserGrades(conn, user);
 						FrmLogOn.dispose();
 					}else {
 						JOptionPane.showMessageDialog(null, "×¢²áÊ§°Ü");

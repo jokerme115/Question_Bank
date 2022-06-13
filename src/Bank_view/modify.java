@@ -6,11 +6,17 @@ import javax.swing.JInternalFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import Bank_Dao.UserDao;
+import Bank_model.User;
+import Bank_util.jdbc_util;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 /**
@@ -25,8 +31,9 @@ public class modify extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JLabel lblNewLabel_2;
 	private JTextField textField_2;
+	private JLabel lblNewLabel_2;
+	User user1 =LogOnFrm.currentUser;
 
 	/**
 	 * Launch the application.
@@ -71,7 +78,16 @@ public class modify extends JInternalFrame {
 		JButton btnNewButton = new JButton("提交");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				updateInformation(e);
+				try {
+					updateInformation(e);
+					JOptionPane.showMessageDialog(null,"修改成功");
+					LogOnFrm.main(null);
+					mainf.dispose();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"修改失败");
+				}
 			}
 		});
 		
@@ -124,7 +140,25 @@ public class modify extends JInternalFrame {
 
 	}
 
-	private void updateInformation(ActionEvent e) {
+	private void updateInformation(ActionEvent e) throws Exception {
+		String userName = this.textField.getText();
+		String userPassword = this.textField_1.getText();
+		String Telephone = this.textField_2.getText();
 		
+		jdbc_util util = new jdbc_util();//锟斤拷锟斤拷锟洁，锟斤拷锟斤拷锟斤拷锟斤拷
+		Connection conn = null;			//
+		UserDao userdao = new UserDao();
+		User user = new User();
+		
+		
+		conn = util.getCon();
+		
+		user.setUserName(userName);
+		user.setUserPassword(userPassword);
+		user.setTelephone(Telephone);
+		user.setId(user1.getI);
+		boolean a = userdao.updateUser(conn, user);
+		System.out.println(a);
 	}
+	
 }

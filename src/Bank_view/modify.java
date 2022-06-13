@@ -82,7 +82,7 @@ public class modify extends JInternalFrame {
 					updateInformation(e);
 					JOptionPane.showMessageDialog(null,"修改成功");
 					LogOnFrm.main(null);
-					mainf.dispose();
+//					mainf.dispose();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -156,7 +156,7 @@ public class modify extends JInternalFrame {
 		user.setUserName(userName);
 		user.setUserPassword(userPassword);
 		user.setTelephone(Telephone);
-		user.setId(user1.getI);
+//		user.setId(user1.getI);
 		boolean a = userdao.updateUser(conn, user);
 		System.out.println(a);
 	}

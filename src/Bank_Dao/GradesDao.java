@@ -5,6 +5,11 @@ import java.sql.PreparedStatement;
 
 import Bank_model.User;
 
+/**
+ * 成绩录入功能
+ * @author Wei LiZhen
+ *
+ */
 public class GradesDao {
 	/**
 	 * 创造用户成绩表
@@ -22,10 +27,9 @@ public class GradesDao {
 		}
 		
 		//释放资源
-		pstmt.close();
-	
-		
+		pstmt.close();	
 	}
+	
 	/**
 	 * 注册用户时使用
 	 * 添加用户成绩表内初次注册时候信息

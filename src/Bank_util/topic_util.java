@@ -27,7 +27,7 @@ public class topic_util {
         Random r = new Random();
         //循环将得到的随机数进行判断，如果随机数不存在于集合中，则将随机数放入集合中，如果存在，则将随机数丢弃不做操作，进行下一次循环，直到集合长度等于nums
         while(list.size() != nums){
-            int num = r.nextInt(end-start) + start;
+            int num = r.nextInt(end-start) + start;//细节nextInt是[0,x)不包含x!
             if(!list.contains(num)){
                 list.add(num);
             }
@@ -46,13 +46,13 @@ public class topic_util {
 	 * @return	返回一个Topic类型的集合
 	 * @throws Exception
 	 */
-	public static ArrayList<Topic> getRandomTopic(Connection conn , int begin, int end, int total) throws Exception{
+	public static ArrayList<Topic> getRandomTopic(Connection conn , int begin, int end, int total, int type) throws Exception{
 		ArrayList<Integer> random = new ArrayList<Integer>();
 		random = randomSet(total, begin, end);
 		
 		ArrayList<Topic> randomTopic= new ArrayList<>();//创建一个集合包含了随机题目的全部信息
 		
-		ArrayList<Topic> allTopic = TopicDao.selectAllTopic(conn);//提取所有题目信息到集合allTopic中
+		ArrayList<Topic> allTopic = getDateTopic(type);//提取所有题目信息到集合allTopic中
 		
 		Iterator<Integer> ITrandom = random.iterator();//利用迭代器遍历所有随机数集合
 		
@@ -94,7 +94,7 @@ public class topic_util {
 	 * @param topic这道题的信息
 	 * @return
 	 */
-	public static int jugementOption(int Option, Topic topic) {
+	public static double jugementOption(double Option, Topic topic) {
 		int flag=0;//0为错误，1为至少做对一个且没有错误，2为全对；
 		String str=topic.getCorrect_Option();//未处理标准答案
 		int currentOption= 0;//整型标准答案
@@ -123,7 +123,7 @@ public class topic_util {
 		else if(topic.getType()==2){
 			//获得选项个数
 			int Option_num=0;
-			int temp=Option;
+			double temp=Option;
 			while(Option>0) {
 				Option_num+=Option%10;
 				Option/=10;
@@ -172,6 +172,7 @@ public class topic_util {
 	 */
 	public static void main(String[] args) throws Exception {
 		Topic test = new Topic();
+		int type = 1;
 		
 		test.setCorrect_Option("ABC");
 		test.setType(2);
@@ -192,7 +193,7 @@ public class topic_util {
 		System.out.println(random.size());
 		
 		ArrayList<Topic> topics = new ArrayList<>();
-		topics = getRandomTopic(conn ,begin, end, total);
+		topics = getRandomTopic(conn ,begin, end, total, type);
 		
 		Iterator<Topic> Ittopics = topics.iterator();
 		

@@ -11,16 +11,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SetTopic{
 
 	private JFrame frame;
-//	ArrayList<Topic> topics = new ArrayList<>();
 	protected static JTextField TopicCount;
 	protected static JTextField TopicScore;
 	protected static JComboBox<String> comboBox;
+	private JTextField score2;
+	private JLabel TXT;
 	
 	/**
 	 * Launch the application.
@@ -59,6 +61,15 @@ public class SetTopic{
 		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		
 		comboBox = new JComboBox<>();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (comboBox.getSelectedIndex() == 2) {
+					TXT.setVisible(true);
+					score2.setVisible(true);
+				}
+				showOther(e);
+			}
+		});
 		comboBox.setFont(new Font("宋体", Font.PLAIN, 16));
 		String item1 = "题目类型";
 		String item2 = "单选题";
@@ -96,34 +107,46 @@ public class SetTopic{
 			}
 		});
 		submit.setFont(new Font("宋体", Font.PLAIN, 16));
+		
+		score2 = new JTextField();
+		score2.setFont(new Font("宋体", Font.PLAIN, 16));
+		score2.setColumns(10);
+		score2.setVisible(false);
+		
+		TXT = new JLabel("\u534A\u5BF9\u5206\u6570");
+		TXT.setFont(new Font("宋体", Font.PLAIN, 16));
+		TXT.setVisible(false);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(98)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(98)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel_1)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblNewLabel_1)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(TopicCount)
-										.addComponent(TopicScore, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(141)
-							.addComponent(submit, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(199, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED))
+								.addComponent(TXT, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(TopicCount)
+								.addComponent(TopicScore, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+								.addComponent(score2, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(74, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(139, Short.MAX_VALUE)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 					.addGap(120))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(142, Short.MAX_VALUE)
+					.addComponent(submit, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+					.addGap(118))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -142,36 +165,35 @@ public class SetTopic{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_3)
 						.addComponent(TopicScore, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addGap(30)
+					.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(score2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(TXT, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addComponent(submit)
-					.addContainerGap(218, Short.MAX_VALUE))
+					.addGap(42))
 		);
 		
-//		try {
-//			topics = topic_util.getDateTopic(1);
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//		}
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
+	protected void showOther(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void diliverInformation(ActionEvent e) throws Exception {
-		AnswerFrm answerfrm = new AnswerFrm();
 		if (comboBox.getSelectedIndex() == 0) {
 			JOptionPane.showMessageDialog(null, "请选择题型");
 		}else if (TopicScore.getText() == null) {
 			JOptionPane.showMessageDialog(null, "小题成绩不能为空");
-		}else if (TopicCount.getText() == null) {
+		}else if (TopicCount.getText() == null) { 
 			JOptionPane.showMessageDialog(null, "题目数量不能为空");
 		}else {
-			answerfrm.main(null);
+			System.out.println(TopicScore.getText());
+			System.out.println(TopicCount.getText());
+			AnswerFrm.main(null);
 			frame.dispose();
 		}
 	}
-
-//	public AnswerFrm getAnswerfrm() {
-//		return answerfrm;
-//	}
-	
 }

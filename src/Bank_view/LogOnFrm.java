@@ -208,8 +208,15 @@ public class LogOnFrm {
 			if (currentUser != null) {
 				JOptionPane.showMessageDialog(null, "µÇÂ¼³É¹¦");
 				try {
-					mainf Main = new mainf();
-					Main.main(null);
+					mainf Main;
+					try {
+						Main = new mainf();
+						Main.main(null);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

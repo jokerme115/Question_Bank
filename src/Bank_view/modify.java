@@ -145,7 +145,7 @@ public class modify extends JInternalFrame {
 		String userPassword = this.textField_1.getText();
 		String Telephone = this.textField_2.getText();
 		
-		jdbc_util util = new jdbc_util();//锟斤拷锟斤拷锟洁，锟斤拷锟斤拷锟斤拷锟斤拷
+		jdbc_util util = new jdbc_util();//
 		Connection conn = null;			//
 		UserDao userdao = new UserDao();
 		User user = new User();

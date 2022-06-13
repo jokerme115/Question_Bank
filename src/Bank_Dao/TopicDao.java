@@ -59,7 +59,7 @@ public class TopicDao {
 		
 		int n = pstm.executeUpdate();
 		pstm.close();
-		if (n > 1) {
+		if (n >= 1) {
 			return true;
 		}else {
 			return false;

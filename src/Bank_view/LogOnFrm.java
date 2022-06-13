@@ -35,7 +35,8 @@ public class LogOnFrm {
 	private jdbc_util util = new jdbc_util();
 	static User currentUser;
 	private UserDao userdao = new UserDao();
-	private mainf Main = new mainf();
+
+	
 	User user1 = new User();
 
 	/**
@@ -207,6 +208,7 @@ public class LogOnFrm {
 			if (currentUser != null) {
 				JOptionPane.showMessageDialog(null, "登录成功");
 				try {
+					mainf Main = new mainf();
 					Main.main(null);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -227,9 +229,6 @@ public class LogOnFrm {
 		return user1;
 	}
 	
-	protected mainf getMain() {
-		return Main;
-	}
 	/**
 	 * 重置button 事件处理
 	 * @param e

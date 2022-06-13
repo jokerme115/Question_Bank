@@ -14,8 +14,10 @@ import java.awt.Color;
 
 public class mainf {
 
-	private JFrame frame;
-	private JDesktopPane table = null;
+	static JFrame frame;
+	static JDesktopPane table = null;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -23,8 +25,7 @@ public class mainf {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mainf window = new mainf();
-					window.frame.setVisible(true);
+					mainf.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,15 +35,18 @@ public class mainf {
 
 	/**
 	 * Create the application.
+	 * @throws Exception 
+	 * @wbp.parser.entryPoint
 	 */
-	public mainf() {
+	public mainf() throws Exception {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws Exception 
 	 */
-	private void initialize() {
+	private void initialize() throws Exception {
 		frame = new JFrame();
 		frame.setTitle("\u7B54\u9898\u754C\u9762");
 		frame.setBounds(100, 100, 556, 444);
@@ -71,6 +75,8 @@ public class mainf {
 				function function = new function();
 				function.setVisible(true);
 				table.add(function);
+				
+				
 			}
 		});
 		menuBar.add(mntmNewMenuItem);
@@ -94,8 +100,7 @@ public class mainf {
 		SetTopic.main(null);
 	}
 
-	private void setExtendedState(int maximizedBoth) {
-		// TODO Auto-generated method stub
-		
+	private void setExtendedState(int maximizedBoth) throws Exception {
+
 	}
 }

@@ -167,7 +167,8 @@ public class function extends JInternalFrame {
 
 	private void add(ActionEvent e) throws Exception {
 		function_modify2 function_modify2 = new function_modify2();
-		function_modify2.main(null);
+		function_modify2.setVisible(true);
+		mainf.table.add(function_modify2);
 		this.dispose();
 		
 	}

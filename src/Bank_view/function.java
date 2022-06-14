@@ -63,18 +63,18 @@ public class function extends JInternalFrame {
 	public function() {
 		setIconifiable(true);
 		setClosable(true);
-		setTitle("管理");
+		setTitle("绠＄悊");
 		setBounds(100, 100, 450, 418);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		
 		
-		JButton btnNewButton = new JButton("增加");
+		JButton btnNewButton = new JButton("澧炲姞");
 		
-		JButton btnNewButton_1 = new JButton("删除");
+		JButton btnNewButton_1 = new JButton("鍒犻櫎");
 		
-		JButton button = new JButton("修改");
+		JButton button = new JButton("淇敼");
 		
 		JLabel lblNewLabel = new JLabel("id:");
 		
@@ -119,38 +119,24 @@ public class function extends JInternalFrame {
 						.addComponent(btnNewButton))
 					.addGap(47))
 		);
-<<<<<<< Updated upstream
-		getContentPane().setLayout(groupLayout);
 
-	}
-=======
 		
-<<<<<<< Updated upstream
 
-		allTopic = new JTable();
-		allTopic.setModel(new DefaultTableModel(
-			mainf.str,
-=======
-<<<<<<< HEAD
 		table = new JTable();
 		scrollPane.setViewportView(table);
-=======
+
 		allTopic = new JTable();
 		allTopic.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
->>>>>>> Stashed changes
+
 			new String[] {
 				"\u7F16\u53F7", "\u9898\u76EE\u7C7B\u578B (1\u4E3A\u5355\u9009 2\u4E3A\u591A\u9009)", "\u9898\u76EE", "\u9009\u9879A", "\u9009\u9879B", "\u9009\u9879C", "\u9009\u9879D"
 			}
 		) {
-<<<<<<< Updated upstream
-			/**
-			 * 
-			 */
+
 			private static final long serialVersionUID = 1L;
-=======
->>>>>>> Stashed changes
+
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false, false, false, false
 			};
@@ -159,16 +145,13 @@ public class function extends JInternalFrame {
 			}
 		});
 		scrollPane.setViewportView(allTopic);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> 31069b720036f6b468ba4c301b719c3effc93c99
->>>>>>> Stashed changes
 		getContentPane().setLayout(groupLayout);
 
 	}
 
 	private void add(ActionEvent e) throws Exception {
+
 		try {
 			function_modify2 function_modify2 = new function_modify2();
 			function_modify2.setVisible(true);
@@ -192,19 +175,9 @@ public class function extends JInternalFrame {
 		
 		boolean a = topicdao.deleteTopic(conn, topic);
 		if (a) {
-			JOptionPane.showMessageDialog(null, "删除成功");
+			JOptionPane.showMessageDialog(null, "鍒犻櫎鎴愬姛");
 		}else {
-			JOptionPane.showMessageDialog(null, "删除失败");
+			JOptionPane.showMessageDialog(null, "鍒犻櫎澶辫触");
 		}
 	}
-<<<<<<< Updated upstream
 
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-=======
-	
-//	private void fillTable();
->>>>>>> 31069b720036f6b468ba4c301b719c3effc93c99
->>>>>>> Stashed changes
-}

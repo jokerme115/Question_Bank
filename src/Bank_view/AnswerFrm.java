@@ -306,6 +306,7 @@ public class AnswerFrm {
 		if (checkTopic()) {
 			translate();
 			grades_util.addUserGrades(conn, Tscore, user);
+			JOptionPane.showMessageDialog(null, "你的分数为:" + Tscore);
 		}else {
 			JOptionPane.showMessageDialog(null, "您还有题没做完啊!");
 		}

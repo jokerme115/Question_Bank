@@ -9,42 +9,37 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import javax.swing.table.DefaultTableModel;
-
 import Bank_Dao.TopicDao;
 import Bank_model.Topic;
 import Bank_util.jdbc_util;
 
-
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-
 
 public class function extends JInternalFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private  JTextField Id;
 	public static int id = 0;
 	jdbc_util util = new jdbc_util();
 	Connection conn = null;
 	TopicDao topicdao = new TopicDao();
 	Topic topic = new Topic();
-
 	private JTable table;
-	private JTable allTopic;
 
+
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -63,23 +58,67 @@ public class function extends JInternalFrame {
 	public function() {
 		setIconifiable(true);
 		setClosable(true);
-		setTitle("ÁÆ°ÁêÜ");
+		setTitle("π‹¿Ì");
 		setBounds(100, 100, 450, 418);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
+		JButton btnNewButton = new JButton("‘ˆº”");
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				try {
+					add(e);
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		
+		JButton btnNewButton_1 = new JButton("…æ≥˝");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, " «∑Ò…æ≥˝") == 0) {
+					try {
+						DeleteTopic(e);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		
-		JButton btnNewButton = new JButton("Â¢ûÂä†");
-		
-		JButton btnNewButton_1 = new JButton("Âà†Èô§");
-		
-		JButton button = new JButton("‰øÆÊîπ");
+		JButton button = new JButton("–ﬁ∏ƒ");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					try {
+						if (Id.getText() != "") {
+							id = Integer.parseInt(Id.getText());
+						}else {
+							JOptionPane.showMessageDialog(null, "«Î ‰»ÎID");
+						}
+						function_modify function_modify = new function_modify();
+						function_modify.setVisible(true);
+						mainf.table.add(function_modify);
+						function.this.setVisible(false);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+
+
+			}
+		});
 		
 		JLabel lblNewLabel = new JLabel("id:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		Id = new JTextField();
+		Id.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -89,7 +128,7 @@ public class function extends JInternalFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel)
 							.addGap(18)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(Id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(btnNewButton)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -111,7 +150,7 @@ public class function extends JInternalFrame {
 					.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(Id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(30)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(button)
@@ -119,54 +158,20 @@ public class function extends JInternalFrame {
 						.addComponent(btnNewButton))
 					.addGap(47))
 		);
-
 		
-
 		table = new JTable();
 		scrollPane.setViewportView(table);
-
-		allTopic = new JTable();
-		allTopic.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-
-			new String[] {
-				"\u7F16\u53F7", "\u9898\u76EE\u7C7B\u578B (1\u4E3A\u5355\u9009 2\u4E3A\u591A\u9009)", "\u9898\u76EE", "\u9009\u9879A", "\u9009\u9879B", "\u9009\u9879C", "\u9009\u9879D"
-			}
-		) {
-
-			private static final long serialVersionUID = 1L;
-
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		scrollPane.setViewportView(allTopic);
-
 		getContentPane().setLayout(groupLayout);
 
 	}
 
 	private void add(ActionEvent e) throws Exception {
-
-		try {
-			function_modify2 function_modify2 = new function_modify2();
-			function_modify2.setVisible(true);
-			mainf.table.add(function_modify2);
-			this.dispose();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-
+		function_modify2 function_modify2 = new function_modify2();
+		function_modify2.setVisible(true);
+		mainf.table.add(function_modify2);
+		this.dispose();
 		
 	}
-	
-
 
 	private void DeleteTopic(ActionEvent e) throws Exception {
 		int ID=Integer.parseInt(Id.getText());
@@ -175,9 +180,9 @@ public class function extends JInternalFrame {
 		
 		boolean a = topicdao.deleteTopic(conn, topic);
 		if (a) {
-			JOptionPane.showMessageDialog(null, "Âà†Èô§ÊàêÂäü");
+			JOptionPane.showMessageDialog(null, "…æ≥˝≥…π¶");
 		}else {
-			JOptionPane.showMessageDialog(null, "Âà†Èô§Â§±Ë¥•");
+			JOptionPane.showMessageDialog(null, "…æ≥˝ ß∞‹");
 		}
 	}
-
+}

@@ -219,7 +219,7 @@ public class LogInFrm {
 					if (a) {
 						JOptionPane.showMessageDialog(null, "×¢²á³É¹¦");
 						GradesDao.addUserGrades(conn, user);
-						FrmLogIn.dispose();
+						this.FrmLogIn.dispose();
 					}else {
 						JOptionPane.showMessageDialog(null, "×¢²áÊ§°Ü");
 					}

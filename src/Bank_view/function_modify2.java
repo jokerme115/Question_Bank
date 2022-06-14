@@ -47,7 +47,7 @@ public class function_modify2 extends JInternalFrame {
 	TopicDao topicdao = new TopicDao();
 	jdbc_util util = new jdbc_util();
 	Connection conn = null;
-	Topic topic = null;
+	Topic topic = new Topic();
 	private JTextField Correct;
 
 	/**
@@ -185,6 +185,7 @@ public class function_modify2 extends JInternalFrame {
 	}
 
 	private void AddTopic(ActionEvent e) throws Exception {
+		conn = util.getCon();
 		topic.setID(comboBox.getItemCount());
 		topic.setTopic(textArea.getText());
 		topic.setOption_A(Aoption.getText());

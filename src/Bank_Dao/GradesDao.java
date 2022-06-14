@@ -2,7 +2,6 @@ package Bank_Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
 import Bank_model.User;
 
 /**
@@ -96,7 +95,6 @@ public class GradesDao {
 		String sql = "ALTER TABLE user_grades ADD grade_? Double;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, user.getGrades_num());
-		
 		//处理结果
 		int n = pstmt.executeUpdate();
 		//释放资源
@@ -124,11 +122,12 @@ public class GradesDao {
 		int n = pstmt.executeUpdate();
 		//释放资源
 		pstmt.close();
-
 		if (n == 1) {
 			return true;
 		}else {
 			return false;
 		}	
 	}
+
+
 }

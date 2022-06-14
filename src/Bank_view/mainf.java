@@ -9,13 +9,30 @@ import javax.swing.JMenuItem;
 import javax.swing.JDesktopPane;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
+import Bank_Dao.TopicDao;
+import Bank_model.Topic;
+import Bank_util.jdbc_util;
+
 public class mainf {
 
+<<<<<<< Updated upstream
 	private JFrame frame;
 	private JDesktopPane table = null;
+=======
+	static JFrame frame;
+	static JDesktopPane table = null;
+	jdbc_util util = new jdbc_util();
+	Connection conn = null;
+	TopicDao topicdao = new TopicDao();
+	static String[][] str= null;
+	
+	
+>>>>>>> Stashed changes
 	/**
 	 * Launch the application.
 	 */
@@ -68,6 +85,11 @@ public class mainf {
 		JMenuItem mntmNewMenuItem = new JMenuItem("\u9898\u76EE");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					str = showAllTopic();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				function function = new function();
 				function.setVisible(true);
 				table.add(function);
@@ -94,8 +116,21 @@ public class mainf {
 		SetTopic.main(null);
 	}
 
+<<<<<<< Updated upstream
 	private void setExtendedState(int maximizedBoth) {
 		// TODO Auto-generated method stub
 		
+=======
+	private String[][] showAllTopic() throws Exception {
+		conn = util.getCon();
+		ArrayList<Topic> list = null;
+
+		list = TopicDao.selectAllTopic(conn);
+		String[][] Data = (String[] []) list.toArray(new String[7][]);
+		return Data;
+	}
+	private void setExtendedState(int maximizedBoth) throws Exception {
+
+>>>>>>> Stashed changes
 	}
 }

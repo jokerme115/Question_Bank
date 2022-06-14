@@ -294,7 +294,12 @@ public class AnswerFrm {
 	private void submit(ActionEvent e) {
 		if (checkTopic()) {
 			translate();
+<<<<<<< Updated upstream
 			System.out.println(Tscore);
+=======
+			grades_util.addUserGrades(conn, Tscore, user);
+			JOptionPane.showMessageDialog(null, "你的成绩为:"+ Tscore);
+>>>>>>> Stashed changes
 		}else {
 			JOptionPane.showMessageDialog(null, "您还有题没做完啊!");
 		}

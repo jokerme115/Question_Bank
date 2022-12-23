@@ -238,7 +238,7 @@ public class LogOnFrm {
 	
 	/**
 	 * 重置button 事件处理
-	 * @param e
+	 * @param
 	 */
 	private void resetValueActionPerformed(ActionEvent event) {
 		this.LoginUserName.setText("");
